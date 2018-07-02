@@ -18,7 +18,7 @@
         <!-- /.box-header -->
         <div class="box-body">
           
-         <table class="table table-hover table-strip">
+         <table class="table table-hover table-strip" id="example1">
             <thead>
               <tr class="info">
                 <th>No</th>
@@ -63,10 +63,10 @@
                   <td>Rp. <?php echo number_format($value['subtotal'],0,',','.'); ?></td>
                   <?php if ($value['status'] == 0) {
                     $sts  = "Belum Terbayarkan.";
-                    $aksi = '<button type="button" id="btninfo" class="bnt btn-sm btn-info" data-toggle="modal">Lanjutkan Pembayaran</button>'; 
+                    $aksi = '<button type="button"  class="bnt btn-sm btn-info btninfo" data-toggle="modal">Lanjutkan Pembayaran</button>'; 
                   }else if ($value['status'] == 1 && $value['sts_t'] == 0) {
                     $sts  = "Menuggu Konfimasi Oleh Admin.";
-                    $aksi = '<button type="button" id="btninfo" class="bnt btn-sm btn-info" data-toggle="modal">Update Bukti Pembayaran</button>
+                    $aksi = '<button type="button" class="bnt btn-sm btn-info btninfo" data-toggle="modal">Update Bukti Pembayaran</button>
                     <hr>
                       <div>
                         <img src="'.base_url($value['bukti_foto']).'"  style="width: 150px; height: 100px;" class="img img-thumbnail img-fluid" alt="">

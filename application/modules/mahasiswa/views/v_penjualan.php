@@ -21,7 +21,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-                 <table class="table table-hover table-strip">
+          <table class="table table-hover table-strip" id="example1">
             <thead>
               <tr class="info">
                 <th>No</th>
@@ -83,7 +83,7 @@
                   </td>
                   <?php if ($value['status'] == 1 && $value['sts_t'] == 1) {
                     $sts = "Menuggu Pengiriman";
-                    $aksi = '<button type="button" id="u_resi" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadResi">Upload Resi</button>';
+                    $aksi = '<button type="button" class="btn btn-success btn-sm u_resi" data-toggle="modal" data-target="#uploadResi">Upload Resi</button>';
                   }else if($value['status'] == 3 && $value['sts_t'] == 1){
                     $sts  = 'Barang Telah Diterima, Menuggu Konfirmasi Admin';
                     $aksi = '';
@@ -144,7 +144,7 @@
 </div>
 
 <script type="text/javascript">
-  $('#u_resi').click(function(){
+  $('.u_resi').click(function(){
   $("#idp").val($(this).closest('tr').children()[1].textContent);
   });
 </script>

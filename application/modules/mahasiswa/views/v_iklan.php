@@ -21,18 +21,22 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-             <table class="table-responsive table table-bordered">
+             <table class="table-responsive table table-bordered" id="example1">
                <caption>List Iklan</caption>
                <thead>
                  <tr>
                    <th>No</th>
-                   <th>Nama Iklan</th>
+                   <th>Gambar</th>
+                   <th>Nama Produk</th>
                    <th>Kategori</th>
                    <th>Harga</th>
+                   <th>Status</th>
                  </tr>
                </thead>
                <tbody>
                  <tr>
+                   <td>data</td>
+                   <td>data</td>
                    <td>data</td>
                    <td>data</td>
                    <td>data</td>

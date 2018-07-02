@@ -69,41 +69,41 @@ function getKota($idk){
      
 } 
 
-function viewKota($idk){ 
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => "http://api.rajaongkir.com/starter/city?province=$idk",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "GET",
-      CURLOPT_HTTPHEADER => array(
-        "key: 54b6d245ff2d26cc361062984d9d3f6d"
-      ),
-    ));
+  function showKota_id($idk){
+        $curl = curl_init(); 
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "http://api.rajaongkir.com/starter/city",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => array(
+            "key: 54b6d245ff2d26cc361062984d9d3f6d"
+          ),
+        ));
      
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-    $data = json_decode($response, true);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
      
-    curl_close($curl);
-     
-    if ($err) {
-      echo "cURL Error #:" . $err;
-    } else {
-     for ($x = 0; $x <= count($data['rajaongkir']['results']); $x++) {
-     if ($idk == $decode['rajaongkir']['results'][$x]['city_id']) {
-       print_r($decode['rajaongkir']['results'][$x]['city_name']);
-        }
+        curl_close($curl);
+      
+        echo "<select class='form-control' name='kota_kab' id='kota_kab'>";
+        echo "<option>Pilih Kota/Kab</option>";
+            $data = json_decode($response, true);
+            for ($i=0; $i < count($data['rajaongkir']['results']); $i++) { 
+              if ($idk == $data['rajaongkir']['results'][$i]['city_id']) {
+                $op = "selected";
+              }else{
+                $op = '';
+              }
+                echo "<option ".$op." value='".$data['rajaongkir']['results'][$i]['city_id']."'>".$data['rajaongkir']['results'][$i]['city_name']."</option>";
+              }
+        echo "</select>";
+  }
 
-      } 
-    } 
-}
-     
-
-function showKota(){
+ function showKota(){
         $curl = curl_init(); 
         curl_setopt_array($curl, array(
           CURLOPT_URL => "http://api.rajaongkir.com/starter/city",
@@ -123,14 +123,13 @@ function showKota(){
      
         curl_close($curl);
      
-        echo "<label>Kota Asal</label><br>";
-        echo "<select name='asal' id='asal'>";
+        echo "<select name='kota_kab' id='kota_kab'>";
         echo "<option>Pilih Kota Asal</option>";
             $data = json_decode($response, true);
             for ($i=0; $i < count($data['rajaongkir']['results']); $i++) { 
                 echo "<option value='".$data['rajaongkir']['results'][$i]['city_id']."'>".$data['rajaongkir']['results'][$i]['city_name']."</option>";
             }
-        echo "</select><br><br><br>";
+        echo "</select>";
     
  } //End Function curlcity_asal
 

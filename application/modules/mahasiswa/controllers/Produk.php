@@ -15,7 +15,7 @@ class Produk extends MY_Controller {
 		$data['title'] = 'Produk';
 		$data['side'] = 'index';
 		$data['produk'] = $this->db->query("SELECT a.*, kategori.nama kategori FROM produk a 
-			JOIN kategori USING(id_kategori) WHERE a.id_users = '$id_users'")->result();
+			JOIN kategori USING(id_kategori) WHERE a.id_users = '$id_users' AND a.status = 0")->result();
 		$this->master($data);
 	}
 	function tambah(){

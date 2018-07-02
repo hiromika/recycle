@@ -2,11 +2,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+        Profile
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo base_url('mahasiswa/iklan');?>"><i class="fa fa-user"></i> Profile</a></li>
-        <li class="active">User</li>
+        <li><a href="<?php echo base_url('user/profile');?>"><i class="fa fa-user"></i>Profile</a></li>
       </ol>
     </section>
 
@@ -16,12 +15,78 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title"></h3>
-            <!--   <a href="<?php echo base_url('mahasiswa/produk/tambah');?>" class="btn btn-success btn-sm pull-right">Tambah Produk</a> -->
+              <h3 class="box-title">Profile</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body table-responsive">
-            
+            <div class="box-body">
+              <form action="<?php echo base_url('mahasiswa/upPro') ?>" method="POST" class="form-horizontal" accept-charset="utf-8">
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">Username :</label>
+                  <div class="col-sm-8">
+                    <input name="username" value="<?php echo $user['username'] ?>" type="text" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">NIM :</label>
+                  <div class="col-sm-8">
+                    <input name="nim" value="<?php echo $user['nim'] ?>" type="text" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">Nama :</label>
+                  <div class="col-sm-8">
+                    <input name="nama" value="<?php echo $user['nama'] ?>" type="text" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">Alamat :</label>
+                  <div class="col-sm-8">
+                    <textarea name="alamat" class="form-control"><?php echo $user['alamat'] ?></textarea>
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">Kota/Kab :</label>
+                  <div class="col-sm-8">
+                    <?php showKota_id($user['kota_kab']); ?>
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">No Telp :</label>
+                  <div class="col-sm-8">
+                    <input name="telp" value="<?php echo $user['telp'] ?>" type="number" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">Email :</label>
+                  <div class="col-sm-8">
+                    <input name="email" value="<?php echo $user['email'] ?>" type="email" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">Nama Bank :</label>
+                  <div class="col-sm-8">
+                    <input name="nama_bank" value="<?php echo $user['nama_bank'] ?>" type="text" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="">No Rekening :</label>
+                  <div class="col-sm-8">
+                    <input name="no_rek" value="<?php echo $user['no_rek'] ?>" type="number" class="form-control" id="" placeholder="Enter ">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="l">Password :</label>
+                  <div class="col-sm-8">
+                    <input name="password" value="" type="password" class="form-control" id="email" placeholder="Enter New Password">
+                    <caption>Kosongkan jika tidak ingin mengganti password</caption>
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                <button type="submit" onclick="return confirm('Update data profile ? ')" class="btn btn-success pull-right">Update</button>
+                </div>
+              </form>
             </div>
             <!-- /.box-body -->
           </div>

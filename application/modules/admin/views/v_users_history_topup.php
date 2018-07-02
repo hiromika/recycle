@@ -33,7 +33,7 @@
                   <tr>
                     <th style="width: 10%;">Alamat</th>
                     <th style="width: 5%;">:</th>
-                    <td><?php echo $mhs['alamat']; ?><?php viewKota($mhs['kota_kab']); ?></td>
+                    <td><?php echo $mhs['alamat']; ?>, <?php getKota($mhs['kota_kab']); ?></td>
                   </tr> 
                   <tr>
                     <th style="width: 10%;">No Telp</th>

@@ -78,6 +78,43 @@ class User extends MY_Controller {
 		
 		redirect($this->session->userdata('level').'/pembelian','refresh');	
 	}
+
+	public function profile(){
+		$data['title'] = 'Profile';
+		$data['side'] = 'Profile';
+		$data['view'] = 'v_profile';
+		$this->db->where('id_users', $this->session->userdata('id_users'));
+		$data['user'] = $this->db->get('users')->row_array();
+		$this->master($data);	
+	}
+
+	public function upPro(){
+		$data = $this->input->post();
+		if ($data['password'] != null) {
+			$object = array(
+				'username' 	=> $data['username'],
+				'nama'		=> $data['nama'],
+				'alamat'	=> $data['alamat'],
+				'kota_kab'	=> $data['kota_kab'],
+				'telp'		=> $data['telp'],
+				'email'		=> $data['email'],
+				'password'	=> md5($data['password']),
+			);
+		}else{
+			$object = array(
+				'username' 	=> $data['username'],
+				'nama'		=> $data['nama'],
+				'alamat'	=> $data['alamat'],
+				'kota_kab'	=> $data['kota_kab'],
+				'telp'		=> $data['telp'],
+				'email'		=> $data['email'],
+			);
+		}
+		$this->db->where('id_users', $this->session->userdata('id_users'));
+		$this->db->update('users', $object);
+
+		redirect('user/profile','refresh');
+	}
 }
 
 // stat pembelian

@@ -81,6 +81,14 @@
             </span>
           </a>
         </li>
+        <li class="">
+          <a href="<?php echo base_url('mahasiswa/profile') ?>">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        </li>
 
       </ul>
     </section>

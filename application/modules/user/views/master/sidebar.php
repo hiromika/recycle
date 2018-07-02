@@ -36,7 +36,18 @@
             </li> -->
           </ul>
         </li>
-        <li class="<?php if($title == 'Topup'){echo 'active';}?> treeview">
+
+        <li class="">
+          <a href="<?php echo base_url('user/profile') ?>">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        </li>
+
+
+      <!--   <li class="<?php if($title == 'Topup'){echo 'active';}?> treeview">
           <a href="#">
             <i class="fa fa-money"></i> <span>Topup</span>
             <span class="pull-right-container">
@@ -54,7 +65,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- /.sidebar -->

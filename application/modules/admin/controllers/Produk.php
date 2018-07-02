@@ -13,7 +13,7 @@ class Produk extends MY_Controller {
 		$data['view'] = 'v_produk';
 		$data['title'] = 'Produk';
 		$data['side'] = 'index';
-		$data['produk'] = $this->db->query('SELECT a.*, kategori.nama kategori, users.nama mahasiswa FROM produk a JOIN kategori USING(id_kategori) JOIN users USING(id_users) WHERE users.level = "mahasiswa"')->result();
+		$data['produk'] = $this->db->query('SELECT a.*, kategori.nama kategori, users.nama mahasiswa FROM produk a JOIN kategori USING(id_kategori) JOIN users USING(id_users) WHERE users.level = "mahasiswa" AND a.status = 0')->result();
 		$this->master($data);
 	}
 	function tambah(){

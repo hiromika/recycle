@@ -16,7 +16,10 @@ class Iklan extends MY_Controller {
 		$data['view'] = 'v_iklan';
 		$data['title'] = 'Produk';
 		$data['side'] = 'index';
-		$data['iklan'] = '';
+
+		
+
+		$data['iklan'] = 
 		$this->master($data);
 	}
 

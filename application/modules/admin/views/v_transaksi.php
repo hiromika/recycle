@@ -21,7 +21,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 
-          <table class="table table-hover table-strip">
+          <table class="table table-hover table-strip" id="example1">
             <thead>
               <tr class="info">
                 <th>No</th>

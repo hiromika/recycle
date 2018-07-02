@@ -15,11 +15,47 @@ class Mahasiswa extends MY_Controller {
 		// $this->master($data);
 	}
 
-	function profile(){
+		public function profile(){
 		$data['title'] = 'Profile';
-		$data['side'] = 'profile';
+		$data['side'] = 'Profile';
 		$data['view'] = 'v_profile';
-		$this->master($data);
+		$this->db->where('id_users', $this->session->userdata('id_users'));
+		$data['user'] = $this->db->get('users')->row_array();
+		$this->master($data);	
+	}
+
+	public function upPro(){
+		$data = $this->input->post();
+		if ($data['password'] != null) {
+			$object = array(
+				'username' 	=> $data['username'],
+				'nama'		=> $data['nama'],
+				'alamat'	=> $data['alamat'],
+				'kota_kab'	=> $data['kota_kab'],
+				'telp'		=> $data['telp'],
+				'email'		=> $data['email'],
+				'nim'		=> $data['nim'],
+				'nama_bank'	=> $data['nama_bank'],
+				'no_rek'	=> $data['no_rek'],
+				'password'	=> md5($data['password']),
+			);
+		}else{
+			$object = array(
+				'username' 	=> $data['username'],
+				'nama'		=> $data['nama'],
+				'alamat'	=> $data['alamat'],
+				'kota_kab'	=> $data['kota_kab'],
+				'telp'		=> $data['telp'],
+				'email'		=> $data['email'],
+				'nim'		=> $data['nim'],
+				'nama_bank'	=> $data['nama_bank'],
+				'no_rek'	=> $data['no_rek'],
+			);
+		}
+		$this->db->where('id_users', $this->session->userdata('id_users'));
+		$this->db->update('users', $object);
+
+		redirect('mahasiswa/profile','refresh');
 	}
 
 	private function master($data){
@@ -49,6 +85,10 @@ class Mahasiswa extends MY_Controller {
 
 	function uploadResi(){
 		$data = $this->input->post();
+
+		$this->db->where('id_pem', $data['id_pem']);
+		$idp = $this->db->get('pembelian')->row_array();
+
 		$path = './bukti_resi';
 			$config['upload_path']    = $path;            
 			$config['allowed_types']  = 'jpg|png';
@@ -67,6 +107,9 @@ class Mahasiswa extends MY_Controller {
 
 				$this->db->where('id_pem', $data['id_pem']);
 				$this->db->update('pembelian', array('status' => 2));
+
+				$this->db->where('id_produk', $idp['id_produk']);
+				$this->db->update('produk', array('status' => 1));
 
 				$file = $img_data['file_name'];
 				$origin = realpath('./bukti_resi').'/'.$file;
