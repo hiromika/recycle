@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Topup extends MY_Controller {
 	function __construct(){
 		parent::__construct();
-		if ($this->session->userdata('status')!="user") {
+		if ($this->session->userdata('level')!="user") {
 			redirect('user/login');
 		}
-		redirect('');
+		
 	}
 
 	function index(){
@@ -19,24 +19,24 @@ class Topup extends MY_Controller {
 		redirect('user/topup/history');
 	}
 	function history(){
-		$username = $this->session->userdata('username');
-		if(strlen($username) > 0){
+		$id_users = $this->session->userdata('id_users');
+		if(strlen($id_users) > 0){
 			$data['view'] = 'v_history_topup';
 			$data['title'] = 'Topup';
 			$data['side'] = 'history';
-			$data['history'] = $this->db->query("SELECT * FROM topup WHERE username = '$username'")->result();
+			$data['history'] = $this->db->query("SELECT * FROM topup WHERE id_users = '$id_users'")->result();
 			$this->master($data);
 		}else{
 			redirect('user');
 		}
 	}
 	function detail_history($id = null){
-		$username = $this->session->userdata('username');
+		$id_users = $this->session->userdata('id_users');
 		if(strlen($id) > 0){
 			$data['view'] = 'v_history_topup_detail';
 			$data['title'] = 'Topup';
 			$data['side'] = 'history';
-			$data['detail'] = $this->db->query("SELECT a.*, b.nama FROM topup a JOIN users b USING(username) WHERE id_topup = '$id' AND username = '$username'")->result()[0];
+			$data['detail'] = $this->db->query("SELECT a.*, b.nama FROM topup a JOIN users b USING(id_users) WHERE id_topup = '$id' AND id_users = '$id_users'")->result()[0];
 			$this->master($data);
 		}else{
 			redirect('user');

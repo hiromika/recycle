@@ -14,6 +14,7 @@ class Produk extends MY_Controller {
 		$data['ulasan'] = $this->db->query("SELECT * FROM ulasan WHERE aktif = '1' AND id_produk = '$id'")->result();
 		$this->load->view('produk',$data);
 	}
+
 	function ulas($id = null){
 		if($id > 0){
 			if($this->input->post('submit')){

@@ -19,7 +19,7 @@
         <li class="header"></li>
         <li class="<?php if($title == 'Produk'){echo 'active';}?> treeview">
           <a href="#">
-            <i class="fa fa-shopping-cart"></i> <span>Produk</span>
+            <i class="fa fa-cart-plus"></i> <span>Produk</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -113,14 +113,24 @@
                 </span>
               </a>
             </li>
-            <!-- <li <?php if($side == 'tambah users'  && $title == 'Topup'){echo 'class="active"';}?>>
-              <a href="<?php echo base_url('admin/topup/tambah_users');?>">
-                <i class="fa fa-plus"></i> <span>Top Up Users</span>
-                <span class="pull-right-container">
+          </ul>
+        </li>
+        <li class="<?php if($title == 'Transaksi'){echo 'active';}?> treeview">
+          <a href="#">
+            <i class="fa fa-shopping-cart"></i> <span>Konfimasi Transaksi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?php if($side == 'List'  && $title == 'Transaksi'){echo 'class="active"';}?>>
+              <a href="<?php echo base_url('admin/transaksi');?>">
+                <i class="fa fa-circle-o"></i> <span>Konfimasi Transaksi</span>
+               <!--  <span class="pull-right-container">
                   <small class="label pull-right bg-green">new</small>
-                </span>
+                </span> -->
               </a>
-            </li> -->
+            </li>
           </ul>
         </li>
       </ul>

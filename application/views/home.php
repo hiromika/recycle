@@ -26,98 +26,135 @@
 
     <script src="<?php echo HTTP_PATH; ?>vendor/jquery/jquery.min.js"></script>
 
-    <style type="text/css" media="screen">
-	
+    <style>
+  /* Note: Try to remove the following lines to see the effect of CSS positioning */
+      .affix {
+          top: 0;
+          width: 100%;
+          z-index: 9999 !important;
+      }
 
+      .affix + .container-fluid {
+          padding-top: 70px;
+      }
+      .hed {
+        font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
+        font-weight: normal;
+        font-size: 2.2em;
+        letter-spacing: .2em;
+        line-height: 1.1em;
+        margin:0px;
+        /*text-align: center;*/
+        text-transform: uppercase
+      }
     </style>
-
   </head>
 
-  <body style="background-color: rgba(128, 128, 128, 0.3);">
+<body style="background-color: rgba(128, 128, 128, 0.3); padding: 0px;">
 
+    <div class="container-fluid" style="background-color:#007bff;color:#fff;height:110px;">
+      <div class="row" style="padding-top: 40px;">
+        <div class="col-md-4">
+          <h1 class="hed">Recycle</h1>
+        </div>
+        <div class="col-md-8">
+         <form class="form" method="POST" action="<?php echo base_url('panel/search'); ?>">
+            <div class="input-group">
+              <input type="text" class="form-control cari" style="" name="cari" placeholder="Search">
+              <select name="kategori" class="" style="width: 200px !important; border: 1px solid #ced4da;">
+                <option value="0">Semua Kategori</option>
+                 <?php foreach ($kategori as $key => $value) { ?>
+                    <option value="<?php echo $value['id_kategori'] ?>"> <?php echo $value['nama']; ?> </option>
+                    <?php } ?>
+              </select>
+              <div class="input-group-btn">
+                <button class="btn btn-info" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-expand-lg navbar-dark fixed-top" style="background-color: #007bff;">
+   <nav class="navbar navbar-inverse navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="197" style="background-color: #007bff;">
       <div class="container">
         <a class="navbar-brand" href="<?php echo base_url(); ?>">Recycle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-        	<ul class="nav navbar-nav">
-					<li class="nav-item">
-					  <a class="nav-link" href="<?php echo base_url(); ?>">Home
-					    <span class="sr-only">(current)</span>
-					  </a>
-					</li>
-					<li class="dropdown">
-				        <a class="nav-link" data-toggle="dropdown" href="#">Kategori</a>
-				        <ul class="dropdown-menu">
-				          <?php foreach ($kategori as $key => $value) { ?>
+          <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url(); ?>">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">Kategori</a>
+                <ul class="dropdown-menu">
+                  <?php foreach ($kategori as $key => $value) { ?>
 
-				            <li class="nav-link"><a href="<?php echo base_url();?>panel/home/<?php echo $value['id_kategori'] ?>" class=""><?php echo $value['nama'] ?></a></li>
+                    <li class="nav-link"><a href="<?php echo base_url();?>panel/home/<?php echo $value['id_kategori'] ?>" class=""><?php echo $value['nama'] ?></a></li>
 
-				          	<?php } ?>
-				        </ul>
-			      	</li>
-					<?php 
-		            if ($level == "admin") { ?>
+                    <?php } ?>
+                </ul>
+              </li>
+          <?php 
+                if ($level == "admin") { ?>
 
-		              <li class="nav-item">
-		                <a class="nav-link" href="<?php echo base_url('admin'); ?>">Dashboard</a>
-		              </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('admin'); ?>">Dashboard</a>
+                  </li>
 
-		            <?php }elseif ($level == "mahasiswa") { ?>
+                <?php }elseif ($level == "mahasiswa") { ?>
 
-		              <li class="nav-item">
-		                <a class="nav-link" href="<?php echo base_url('mahasiswa/produk'); ?>">Dashboard</a>
-		              </li> 
-		              <li class="nav-item">
-		                <a class="nav-link" href="<?php echo base_url('mahasiswa/topup'); ?>">Top Up</a>
-		              </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('mahasiswa/produk'); ?>">Dashboard</a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('mahasiswa/pembelian'); ?>">Pembelian</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('mahasiswa/topup'); ?>">Top Up</a>
+                  </li>
+                <?php }elseif ($level == "user") { ?>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo base_url('user/pembelian'); ?>">Pembelian</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo base_url('user/topup'); ?>">Top Up</a>
+                    </li>
+                <?php } ?>
 
-		            <?php }elseif ($level == "user") { ?>
-		              	<li class="nav-item">
-		                	<a class="nav-link" href="<?php echo base_url('user/topup'); ?>">Top Up</a>
-		              	</li>
-		            <?php } ?>
-
-		            <li class="nav-item">
-		              <a class="nav-link" href="#">About</a>
-		            </li>
-		            <li class="nav-item">
-		              <a class="nav-link" href="#">Contact</a>
-		            </li>
-		            <li class="nav-item">
-		              <a class="nav-link" href="#">Services</a>
-		            </li>
-        	</ul>
-        	       <form class="navbar-form ml-auto" action="">
-					  <div class="input-group">
-					    <input type="text" class="form-control cari" style="" placeholder="Search">
-					    <div class="input-group-btn">
-					      <button class="btn btn-info" type="submit">
-					        <i class="fa fa-search"></i>
-					      </button>
-					    </div>
-					  </div>
-					</form>
-			  <ul class="navbar-nav ">
-		        <?php if (isset($level)) { ?>
-		        	<li class="nav-item">
-		            <a class="nav-link" href="<?php echo base_url("$level/profile")?>"><span class="fa fa-user" style=" text-transform: uppercase;"> <?php echo $this->session->userdata('nama'); ?></span></a>
-		         	</li>
-		           <li class="nav-item">
-		            <a class="nav-link" href="<?php echo base_url("$level/logout")?>"><span class="fa fa-sign-in"></span> Logout</a>
-		        	</li> 
-		        <?php }else{ ?>
-		          <li class="nav-item">
-		            <a class="nav-link" href="#" data-toggle="modal" data-target="#login"><span class="fa fa-sign-in"></span> Sign In</a>
-		          </li> 
-		          <li class="nav-item">
-		            <a class="nav-link" href="#" data-toggle="modal" data-target="#join"><span class="fa fa-user"></span> Sign Up</a>
-		          </li>
-		        <?php } ?>
-		      </ul>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Services</a>
+                </li>
+          </ul>
+        <ul class="navbar-nav ml-auto">
+            <?php if (isset($level)) { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url("$level/profile")?>"><span class="fa fa-user" style=" text-transform: uppercase;"> <?php echo $this->session->userdata('nama'); ?></span></a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url("$level/logout")?>"><span class="fa fa-sign-in"></span> Logout</a>
+              </li> 
+            <?php }else{ ?>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#login"><span class="fa fa-sign-in"></span> Sign In</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#join"><span class="fa fa-user"></span> Sign Up</a>
+              </li>
+            <?php } ?>
+          </ul>
         </div>
       </div>
     </nav>

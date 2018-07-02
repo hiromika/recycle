@@ -19,7 +19,7 @@
         <li class="header"></li>
         <li class="<?php if($title == 'Produk'){echo 'active';}?> treeview">
           <a href="#">
-            <i class="fa fa-shopping-cart"></i> <span>Produk</span>
+            <i class="fa fa-cart-plus"></i> <span>Produk</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -64,6 +64,24 @@
             </span>
           </a>
         </li>
+
+        <li class="">
+          <a href="<?php echo base_url('mahasiswa/penjualan') ?>">
+            <i class="fa fa-shopping-cart"></i> <span>Penjualan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="">
+          <a href="<?php echo base_url('mahasiswa/pembelian') ?>">
+            <i class="fa fa-shopping-cart"></i> <span>Pembelian</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        </li>
+
       </ul>
     </section>
     <!-- /.sidebar -->

@@ -19,21 +19,21 @@
         <li class="header"></li>
         <li class="<?php if($title == 'Produk'){echo 'active';}?> treeview">
           <a href="#">
-            <i class="fa fa-shopping-cart"></i> <span>Produk</span>
+            <i class="fa fa-shopping-cart"></i> <span>Pembelian</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?php if($side == 'index' && $title == 'Produk'){echo 'class="active"';}?>><a href="<?php echo base_url('user/produk')?>"><i class="fa fa-circle-o"></i> Semua Produk</a></li>
-            <li <?php if($side == 'tambah' && $title == 'Produk'){echo 'class="active"';}?>>
+            <li <?php if($side == 'index' && $title == 'Produk'){echo 'class="active"';}?>><a href="<?php echo base_url('user/pembelian')?>"><i class="fa fa-circle-o"></i>Daftar Pembelian</a></li>
+           <!--  <li <?php if($side == 'tambah' && $title == 'Produk'){echo 'class="active"';}?>>
               <a href="<?php echo base_url('user/produk/tambah');?>">
                 <i class="fa fa-plus"></i> <span>Tambah</span>
                 <span class="pull-right-container">
                   <small class="label pull-right bg-green">new</small>
                 </span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <li class="<?php if($title == 'Topup'){echo 'active';}?> treeview">

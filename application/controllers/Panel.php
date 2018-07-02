@@ -7,6 +7,9 @@ class Panel extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_panel','_model');
+
+		$key = "54b6d245ff2d26cc361062984d9d3f6d";
+		$url = "http://api.rajaongkir.com/starter/";
 	}
 	
 	function home($id_kategori = null){
@@ -21,7 +24,6 @@ class Panel extends MY_Controller {
 		$this->load->view('home',$data);
 	}
 
-
 	private function kategori($id_kategori = null){
 		
 		if ($id_kategori == 0) {
@@ -29,7 +31,7 @@ class Panel extends MY_Controller {
 			$this->db->from('produk a');
 			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
 			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
-		return	$this->db->get()->result_array();
+			return	$this->db->get()->result_array();
 		}else{
 			$this->db->select('*, a.nama as produk_name, a.id_users as users, a.extensi as ext');
 			$this->db->from('produk a');
@@ -41,6 +43,35 @@ class Panel extends MY_Controller {
 
 	}
 
+	function search(){
+		$post = $this->input->post();
+		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
+
+		$banner = $this->db->query("SELECT id_produk, b.nama kategori, c.nama user, a.nama, deskripsi, harga, a.extensi FROM produk a JOIN kategori b USING(id_kategori) JOIN users c USING(id_users) WHERE a.aktif = '1' ORDER BY rand() LIMIT 5")->result_array();
+
+		if ($post['kategori'] == 0) {
+			$this->db->select('*, a.nama as produk_name, a.id_users as users, a.extensi as ext');
+			$this->db->from('produk a');
+			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
+			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
+			$this->db->like('a.nama', $post['cari'], 'BOTH');
+		$daftar = 	$this->db->get()->result_array();
+		}else{
+			$this->db->select('*, a.nama as produk_name, a.id_users as users, a.extensi as ext');
+			$this->db->from('produk a');
+			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
+			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
+			$this->db->where('a.id_kategori', $post['id_kategori']);
+			$this->db->like('a.nama', $post['cari'], 'BOTH');
+		$daftar = 	$this->db->get()->result_array();
+		}
+
+		$data['banner'] = $banner;
+		$data['daftar'] = $daftar;
+		$this->load->view('home',$data);
+	}
+
+
 	public function detail($idp){
 		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
 
@@ -51,7 +82,65 @@ class Panel extends MY_Controller {
 			$this->db->where('a.id_produk', $idp);
 		$data['produk'] = $this->db->get()->row_array();
 		
+		$this->db->select('a.kota_kab');
+		$this->db->from('users a');
+		$this->db->join('produk b', 'b.id_users = a.id_users', 'left');
+		$this->db->where('b.id_produk', $idp);
+		$getasal = $this->db->get()->row_array();
+
+		$data['asal']   = $getasal['kota_kab'];
+		$data['tujuan'] = $this->session->userdata('kota_kab');
+		$this->db->where('id_users', $this->session->userdata('id_users'));
+		$data['user'] = $this->db->get('users')->row_array();
+
 		$this->load->view('produk',$data);
+	}
+
+	public function beli(){
+		$data = $this->input->post();
+		$ex = explode(",", $data['service']);
+		$obj = array(
+			'id_users' 		=> $data['id_users'],
+			'id_produk'		=> $data['id_produk'],
+			// 'jumlah'		=> $data['jumlah'],
+			'subtotal'		=> $data['subtotal'],
+			'jenis_paket'	=> $ex[0],
+			'harga_paket'	=> $ex[1],
+			'catatan'		=> $data['catatan'],
+			'status'		=> 0,
+		);
+		$in = $this->db->insert('pembelian', $obj);
+		$id = $this->db->insert_id();
+
+		if ($in) {
+			echo json_encode(array('result' => true, 
+				'id_pem' 	=> $id, 
+				'subtot' 	=> 'Rp.'.number_format($data['subtotal'],0,',','.'), 
+				// 'jml' 		=> $data['jumlah'], 
+				'paket' 	=> 'JNE '.$ex[0].' : Rp.'.$ex[1], 
+				'ctt' 		=> $data['catatan'] ));
+		}else{
+			echo json_encode(array('result' => true,));
+		}
+
+	}
+
+	public function metode(){
+		$data = $this->input->post();
+
+		$this->db->insert('transaksi', array('id_pem' => $data['id_pem']));
+
+		$object = array(
+			'metode' => $data['metode'], 
+		);
+		$this->db->where('id_pem', $data['id_pem']);
+		$do = $this->db->update('pembelian', $object);
+
+		if ($do) {
+			redirect($this->session->userdata('level').'/pembelian','refresh');
+		}else{
+			redirect('','refresh');
+		}
 	}
 
 	function login(){
@@ -75,6 +164,7 @@ class Panel extends MY_Controller {
 					'username' 	=> $data['username'],
 					'nama' 		=> $data['nama'],
 					'level' 	=> $data['level'],
+					'kota_kab'  => $data['kota_kab']
 				);
 				$this->session->set_userdata($data_session);
 
@@ -195,5 +285,8 @@ class Panel extends MY_Controller {
 			echo '</script>';
 		}
 	}
+
+
+	
 
 }

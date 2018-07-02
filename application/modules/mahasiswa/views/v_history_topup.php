@@ -27,6 +27,7 @@
                   <th width="1"></th>
                   <th>Waktu</th>
                   <th>Saldo</th>
+                  <th>Keterangan</th>
                   <th width="1">Status</th>
                 </tr>
                 </thead>
@@ -41,6 +42,7 @@
                       </td>
                       <td><?php echo $d->timestamp?></td>
                       <td><?php echo $d->jumlah?></td>
+                      <td><?php echo $d->keterangan?></td>
                       <?php
                         if($d->validasi == 1){
                       ?>
