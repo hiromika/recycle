@@ -27,13 +27,16 @@ class Panel extends MY_Controller {
 
 
 	function about(){
-		$this->load->view('about',array());
+		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
+		$this->load->view('about',$data);
 	}
 	function contact(){
-		$this->load->view('contact',array());
+		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
+		$this->load->view('contact',$data);
 	}
 	function services(){
-		$this->load->view('services',array());
+		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
+		$this->load->view('services',$data);
 	}
 
 
