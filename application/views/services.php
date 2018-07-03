@@ -46,6 +46,10 @@
         /*text-align: center;*/
         text-transform: uppercase
       }
+      html, body
+      {
+          height: 100%;
+      }
     </style>
   </head>
 
@@ -158,62 +162,102 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" style="background-color: white ">
-
+    <div class="container" style="background-color: white; ">
       <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <div class="jumbotron">
+            <h4>Syarat pembelian pada Recycle</h4> <hr>
 
+            <h5>Untuk melakukan pemesanan pada Recycle diharuskan mengikuti ketentuan dan tata cara yang berlaku seperti dibawah ini : <br><br>
+              - Ketentuan <br>
+              <ol type="1">
+                <li>Memiliki ID yang sudah didaftarkan.</li>
+                <li>Jika belum memiliki ID, silakan daftar.</li>
+                <li>Jika anda belum login, maka anda tidak dapat melakukan pembelian.</li>
+              </ol>  
 
-        <div class="col-lg-12">
-        
-          <div class="card mt-4">
-            <div class="row">
-                <div class="col-md-6">
-                  <div style="margin: 15px;">
-                  <img class="card-img-top img-thumbnail img-fluid" style="width: 100%; height: 300px;" src="<?php echo base_url('produk/').$produk['id_produk'].$produk['ext']?>" alt="">  
-                  </div>
-                </div>
-                <div class="col-md-6 text-center" style="margin-top: 50px; padding-right: 30px;">
-                  <h3 class="card-title" style="color: #42b549; text-transform: uppercase;"><?php echo $produk['produk_name']; ?></h3>
-                  <h4>Rp <?php echo number_format($produk['harga'],0,',','.'); ?></h4>
-                  <button type="button" style="margin-top: 30px;" class="btn btn-md btn-primary btn-block" data-toggle="modal" <?php echo (isset($level))?'id="buy"':'data-target="#login"' ?>><span class="fa fa-shopping-cart"></span>&nbsp Beli</button>
-                </div>
-              </div>  
+              - Tata Cara<br>
+              <ol type="1">
+                <li>Pilih produk yang ada di halaman utama website atau pilih kategori yang ingin anda beli.</li>
+                <li>Pilih produk yang anda ingin beli.</li>
+                <li>Silakan login.</li>
+                <li>Jika anda belum login anda tidak dapat melanjutkan pembelian.</li>
+                <li>Pada konfirmasi pembelian akan tertera nominal yang harus anda bayarkan ke rekening.</li>
+                <li>BNI : 290-868-916 a/n Farhan Salim.</li>
+                <li>Pembayaran paling lambat 1x24 jam</li>
+                <li>Jika sudah melakukan pembayaran, lakukan konfirmasi pembayaran dengan mengupload bukti pembayaran.</li>
+                <li>Setelah sukses melakukan konfirmasi pembayaran, admin akan mengkonfirmasi pembayaran tersebut.</li>
+                <li>Produk yang anda beli akan dikirim ke alamat yang tertera pada akun anda.</li>
+                <li>Jangan lupa untuk logout akun anda setelah selesai menggunakan Recycle.</li>
+              </ol><hr>
+            </h5>
 
-            <div class="card-body">
-              <hr>
-              <p class="card-text"><?php echo $produk['k_name']; ?></p><br>
-              <p class="card-text"><?php echo $produk['deskripsi']; ?></p>
-              <p class="card-text"><span class="fa fa-user"></span> <?php echo $produk['nama']; ?></p>
-              <!-- <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars -->          
-            </div>
+            <h4>Syarat berjualan pada Recycle</h4><hr>
+            <h5>Untuk melakukan dapat berjualan di Recycle diharuskan mengikuti ketentuan dan tata cara yang berlaku seperti dibawah ini :<br><br>
+              -Ketentuan <br>
+              <ol type="1">
+                <li>Mahasiswa Universitas Darma Persada</li>
+                <li>Memiliki Kartu Tanda Mahasiswa (KTM) </li>
+                <li>Memiliki ID yang sudah didaftarkan.</li>
+                <li>Jika belum memiliki ID, silakan daftar.</li>
+                <li>Jika anda belum login, maka anda tidak dapat berjualan.</li>
+              </ol><br>
+              -Tata Cara <br>
+              <ol type="1">
+                <li>Silkan login.</li>
+                <li>Jika anda belum login, anda tidak dapat berjualan.</li>
+                <li>Pilih menu dashboard.</li>
+                <li>Pada menu dashboard, pilih tambah produk.</li>
+                <li>Isi detail produk yang akan anda jual, lalu simpan.</li>
+                <li>Produk anda berhasil ditambahkan, dan akan muncul di web.</li>
+                <li>Jangan lupa untuk logout akun anda setelah selesai menggunakan recycle.</li>
+              </ol>
+            </h5>
+            <h4>Syarat beriklan Recycle <br>
+            Bekerja Sama dengan Google Adwords
+            </h4>
+            <h5>Untuk melakukan dapat beriklan menggunakan jasa Recycle diharuskan mengikuti ketentuan dan tata cara yang berlaku seperti dibawah ini : <br><br>
+              -Ketentuan <br>
+              <ol type="1">
+                <li>Mahasiswa Universitas Darma Persada</li>
+                <li>Memiliki Kartu Tanda Mahasiswa (KTM) </li>
+                <li>Memiliki ID yang sudah didaftarkan.</li>
+                <li>Jika belum memiliki ID, silakan daftar.</li>
+                <li>Jika anda belum login, maka anda tidak dapat berjualan.</li>
+                <li>Harus memiliki saldo minimal Rp. 5000.</li>
+              </ol><br>
+              -Tata Cara Topup <br>
+              <ol type="1">
+                <li>Silkan login.</li>
+                <li>Jika anda belum login, anda tidak dapat beriklan.</li>
+                <li>Pilih menu topup.</li>
+                <li>Pada menu topup, pilih jumlah saldo.</li>
+                <li>Lakukan pembayaran sesuai pilihan saldo ke rekening yang tertera.
+                    <br> BNI : 290-868-916 a/n Farhan Salim.
+                    </li>
+                <li>Pembayaran paling lambat 1x24 jam.</li>
+                <li>Jika sudah melakukan pembayaran, lakukan konfirmasi pembayaran dengan mengupload bukti pembayaran.</li>
+                <li>Setelah sukses melakukan konfirmasi pembayaran, admin akan mengkonfirmasi pembayaran tersebut.</li>
+                <li>Setelah sukses melakukan konfirmasi pembayaran, admin akan mengkonfirmasi pembayaran tersebut.</li>
+                <li>Jangan lupa untuk logout akun anda setelah selesai menggunakan recycle.</li>
+              </ol><br>
+              -Tata Cara Beriklan <br>
+              <ol type="1">
+                <li>Silkan login.</li>
+                <li>Jika anda belum login, anda tidak dapat beriklan.</li>
+                <li>Pilih menu produk.</li>
+                <li>Pada menu produk, pilih produk yang ingin diiklan dan lakukan request iklan.</li>
+                <li>Jika anda memiliki cukup saldo, admin akan memproses iklan anda.</li>
+                <li>Jika iklan anda sudah tampil pada pencarian Google, admin akan mengupdate status iklan pada produk anda.</li>
+                <li>Jangan lupa untuk logout akun anda setelah selesai menggunakan recycle.</li>
+              </ol>
+            </h5>
           </div>
-          <!-- /.card -->
-
-       <!--    <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-              Product Reviews
-            </div>
-            <div class="card-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <a href="#" class="btn btn-success">Leave a Review</a>
-            </div>
-          </div>
-         /.card -->
-
         </div>
         <!-- /.col-lg-9 -->
       </div>
       <!-- /.row -->
-
     <br>
     </div>
     <!-- /.container -->
@@ -237,94 +281,6 @@
       <!-- /.container -->
     </footer>
 
-
-
-
-
-<!-- Modal -->
-<div id="beli" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Beli</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>  
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <form action="javascript:void(0)" method="POST" accept-charset="utf-8">
-            <input type="text" name="id_users" id="id_users" style="display: none;" value="<?php echo $this->session->userdata('id_users'); ?>" placeholder="">
-            <input type="text" name="id_produk" id="id_produk" style="display: none;" value="<?php echo $produk['id_produk']; ?>" placeholder="">
-            <table>
-              <h6>Detail Produk</h6>
-                <tr>
-                  <th colspan="2">Nama Produk</th>
-                </tr>
-                <tr>
-                  <td colspan="2" style="color: #42b549; text-transform: uppercase;"><?php echo $produk['produk_name']; ?></td>
-                </tr>
-                <tr>
-                  <!-- <th>Jumlah Barang</th> -->
-                  <th>Harga Barang</th>
-                </tr>
-                <tr>
-                  <!-- <td><input type="number" id="jumlah" value="1" class="form-control" style="width: 90%;" name="jumlah"></td> -->
-                  <td> <input type="text" name="tot" style="background-color: #fff !important; pointer-events: none;" id="tot"  class="form-control" value="<?php echo $produk['harga'];?>" placeholder=""></td>
-                </tr>
-            </table>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="">Catatan Untuk Penjual</label>
-              <textarea name="catatan" id="catatan" class="form-control" placeholder="Catatan"></textarea>
-            </div>
-          </div>
-        </div>
-        <hr>
-      <div class="row">
-        <div class="col-md-12">
-          <table class="table">
-            <h6>Tujuan Pengiriman</h6>
-            <tr>
-              <th>Alamat :</th>
-              <td><?php echo $user['alamat']; ?></td>
-            </tr>
-            <tr>
-              <th>Kota/Kab :</th>
-              <td><?php getKota($user['kota_kab']); ?></td>
-            </tr>
-            <tr>
-              <th>No Tlp :</th>
-              <td><?php echo $user['telp']; ?></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-12">
-          <table class="table">
-            <tr>
-              <th>Paket Pengiriman</th>
-              <th>Subtotal</th>
-            </tr>
-            <tr>
-              <?php hitung_ongkir($asal,$tujuan);?>
-              <td><input type="text" name="subtotal" style="background-color: #fff !important; pointer-events: none;" id="subtot"  class="form-control" value="<?php echo $produk['harga'];?>" placeholder=""></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" onclick="beli()" class="btn btn-info btn-flat btn-block"><span class="fa fa-shopping-cart"></span>&nbsp Beli Produk ini</button>
-            </form>
-      </div>
-    </div>
-  </div>
-</div>
 
     <!-- Modal Login-->
   <div id="jneis_transaksi" class="modal fade" role="dialog">
@@ -484,7 +440,6 @@
   </div>
 
 
-
     <!-- Bootstrap core JavaScript -->
     <script src="<?php echo HTTP_PATH; ?>vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo HTTP_PATH; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -493,93 +448,6 @@
   <script src="<?php echo HTTP_PATH; ?>datatable/dataTables.bootstrap.js"></script>
 
 
-
-  <script>
-    var url = '<?php echo base_url(); ?>';
-    $('#lv').change(function(){
-      if($('#lv').val() == "3") {
-        $('#cklv').html('');
-        $('#nm').html('');
-        $('#cklv').append('<div class="form-group has-feedback"><input name="foto" type="file" class="form-control" placeholder="KTP" required><p>silahkan upload KTP dengan format jpg atau png</p></div>');
-      }else{
-        $('#cklv').html('');
-        $('#nm').html('');
-        $('#nm').append('<div class="form-group has-feedback"><input name="nim" type="text" class="form-control" placeholder="NIM" required><span class="glyphicon glyphicon-user form-control-feedback"></span></div>');
-        $('#cklv').append('<div class="form-group has-feedback"><input name="bank" type="text" class="form-control" placeholder="Nama Bank" required><span class="glyphicon glyphicon glyphicon-briefcase form-control-feedback"></span></div><div class="form-group has-feedback"><input name="norek" type="text" class="form-control" placeholder="No Rekeing" required><span class="glyphicon glyphicon-link form-control-feedback"></span></div><div class="form-group has-feedback"><input name="foto" type="file" class="form-control" placeholder="KTM" required><p>silahkan upload KTM dengan format jpg atau png</p></div>');
-      }
-    });
-
-    $('#example1').DataTable({
-        "paging": true,
-          "lengthChange": false,
-          "searching": true,
-          "order": [[0, 'desc']],
-          "info": true,
-          "autoWidth": true,
-          "ordering": false,
-    });
-
-    var d = null;
-
-    // $('#jumlah').keyup(function() {
-    //   var tot = $('#jumlah').val()*'<?php echo $produk['harga'] ?>';
-    //   $('#tot').val(tot);
-    //   // d = $('#ong').val();
-      // var o = d.split(',');
-      // var t = parseInt($('#tot').val());
-      // var total = tot + parseInt(o[1]);
-    //   $('#subtot').val(tot);
-    
-    // });
-
-    $('#ong').change(function() {
-      d = $('#ong').val();
-      var o = d.split(',');
-      var t = parseInt($('#tot').val());
-      var total = t + parseInt(o[1]);
-      console.log(total);
-      $('#subtot').val(total);
-    });
-
-    $('#buy').click(function(){
-       $('#beli').modal({
-          show     : true,
-          backdrop : 'static',
-          keyboard : false,
-      });
-    })
-    function beli(){
-        $.ajax({
-          url: url+'panel/beli',
-          type: 'POST',
-          data: {
-            id_users    : $('#id_users').val(),
-            id_produk   : $('#id_produk').val(),
-            // jumlah      : $('#jumlah').val(),
-            service     : $('#ong').val(),
-            subtotal    : $('#subtot').val(),
-            catatan     : $('#catatan').val(),
-          },
-          success:function(result){
-            var obj = $.parseJSON(result);
-            if (obj.result){
-              $('#beli').modal('hide');
-              $('#jneis_transaksi').modal({
-                  show     : true,
-                  backdrop : 'static',
-                  keyboard : false,
-              });
-              $('#id_pem').val(obj.id_pem);
-              $('#totbayar').html('<strong>Rp.'+obj.subtot+'</strong>');
-              $('#paket').html(obj.paket);
-              $('#jml').html(obj.jml);
-              $('#ctt').html(obj.ctt);
-            }
-          }
-        });    
-    }
-
-  </script>
 
   </body>
 

@@ -16,6 +16,13 @@ class Produk extends MY_Controller {
 		$data['side'] = 'index';
 		$data['produk'] = $this->db->query("SELECT a.*, kategori.nama kategori FROM produk a 
 			JOIN kategori USING(id_kategori) WHERE a.id_users = '$id_users' AND a.status = 0")->result();
+		foreach ($data['produk'] as $d){
+			$saldo = $this->db->query("SELECT SUM(jumlah) saldo FROM topup WHERE id_users = '$d->id_users' AND validasi = '1'")->result()[0]->saldo;
+			if ($saldo < 5000) {
+				$this->db->where('id_users', $d->id_users);
+				$this->db->update('produk', array('iklan' => 0));
+			}
+		}
 		$this->master($data);
 	}
 	function tambah(){
@@ -143,6 +150,20 @@ class Produk extends MY_Controller {
 		} else{
 			redirect('mahasiswa');
 		}
+	}
+
+	function doReq($idp){
+		$this->db->where('id_produk', $idp);
+		$this->db->update('produk', array('iklan' =>  1,));
+
+		redirect('mahasiswa/produk','refresh');
+	}
+	
+	function doReqStop($idp){
+		$this->db->where('id_produk', $idp);
+		$this->db->update('produk', array('iklan' =>  3,));
+
+		redirect('mahasiswa/produk','refresh');
 	}
 
 	private function master($data){

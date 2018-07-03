@@ -30,8 +30,8 @@
                   <th>Nama Produk</th>
                   <th>Harga</th>
                   <th>User</th>
-                  <th width="1">Iklan</th>
                   <th width="1">Status</th>
+                  <th width="1">Iklan</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -48,17 +48,6 @@
                       <td><?php echo 'Rp'.number_format($d->harga)?></td>
                       <td><?php echo $d->mahasiswa?></td>
                       <?php
-                        if($d->iklan == 1){
-                      ?>
-                      <td><span class="fa fa-close text-success"></span></td> 
-                      <?php 
-                        }else{
-                      ?>
-                      <td><i class="fa fa-close text-danger"></i></td>
-                      <?php   
-                        }
-                      ?>
-                      <?php
                         if($d->aktif == 1){
                       ?>
                       <td><span class="label label-success">Aktif</span></td> 
@@ -69,9 +58,30 @@
                       <?php   
                         }
                       ?>
+                      <?php
+                        if($d->iklan == 2){
+                      ?>
+                      <td><span class="label label-success">Aktif</span></td> 
+                      <?php 
+                        }else if ($d->iklan == 1) { ?>
+                      <td><span class="label label-warning">Request</span></td> 
+                      <?php }else if ($d->iklan == 3) { ?>
+                      <td><span class="label label-warning">Request Cencel</span></td> 
+                      <?php }else{
+                      ?>
+                      <td><i class="label label-danger">Tidak Aktif</i></td>
+                      <?php   
+                        }
+                      ?>
+                      <?php $saldo = $this->db->query("SELECT SUM(jumlah) saldo FROM topup WHERE id_users = '$d->id_users' AND validasi = '1'")->result()[0]->saldo; ?> ?>
                       <td>
                         <a href="<?php echo base_url('admin/produk/edit/').$d->id_produk?>" title="edit" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
                         <a href="<?php echo base_url('admin/produk/doDelete/').$d->id_produk?>" onclick="return confirm('Hapus produk ini ?')" title="edit" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                         <?php if ($saldo >= 5000 && $d->iklan == 1) { ?>
+                        <a href="<?php echo base_url('admin/produk/doIklan/').$d->id_produk?>" onclick="return confirm('Iklankan produk ini ?')" title="Request" class="btn btn-xs btn-warning"><i class="fa fa-barcode"></i></a>
+                        <?php }else if ($d->iklan == 3) { ?>
+                          <a href="<?php echo base_url('admin/produk/doIklanStop/').$d->id_produk?>" onclick="return confirm('Batal iklankan ?')" title="Request" class="btn btn-xs btn-warning"><i class="fa fa-barcode"></i></a>
+                        <?php } ?>
                       </td>
                     </tr>
                   <?php

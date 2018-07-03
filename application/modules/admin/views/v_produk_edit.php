@@ -89,7 +89,8 @@
               <label class="col-sm-2 control-label">Iklan</label>
               <div class="col-sm-2">
                 <select name="iklan" class="form-control">
-                  <option value="1" <?php if($produk->iklan == 1){echo 'selected';} ?>>Aktif</option>
+                  <option value="1" <?php if($produk->iklan == 2){echo 'selected';} ?>>Aktif</option>
+                  <option value="1" <?php if($produk->iklan == 1){echo 'selected';} ?>>Request</option>
                   <option value="0" <?php if($produk->iklan == 0){echo 'selected';} ?>>Tidak Aktif</option>
                 </select>
               </div>

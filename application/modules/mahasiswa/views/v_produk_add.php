@@ -52,6 +52,17 @@
           </div>
           <div class="box-body">
             <div class="form-group">
+              <label class="col-sm-2 control-label">Kondi</label>
+              <div class="col-sm-2">
+                <select name="kondisi" class="form-control">
+                  <option value="0">Bekas</option>
+                  <option value="1">Baru</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
               <label class="col-sm-2 control-label">Harga</label>
               <div class="col-sm-10">
                 <input type="number" name="harga" class="form-control" placeholder="...">

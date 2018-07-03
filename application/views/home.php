@@ -50,9 +50,9 @@
     </style>
   </head>
 
-<body style="background-color: rgba(128, 128, 128, 0.3); padding: 0px;">
+<body style="background-color: #F1F1F1; padding: 0px;">
 
-    <div class="container-fluid" style="background-color:#007bff;color:#fff;height:110px;">
+    <div class="container-fluid" style="background-color:#42b549;color:#fff;height:110px;">
       <div class="row" style="padding-top: 40px;">
         <div class="col-md-4">
           <h1 class="hed">Recycle</h1>
@@ -78,7 +78,7 @@
       </div>
     </div>
     <!-- Navigation -->
-   <nav class="navbar navbar-inverse navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="197" style="background-color: #007bff;">
+   <nav class="navbar navbar-inverse navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="197" style="background-color: #42b549;">
       <div class="container">
         <a class="navbar-brand" href="<?php echo base_url(); ?>">Recycle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,15 +127,14 @@
                       <a class="nav-link" href="<?php echo base_url('user/topup'); ?>">Top Up</a>
                     </li>
                 <?php } ?>
-
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
+                  <a class="nav-link" href="<?php echo base_url('panel/about'); ?>">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
+                  <a class="nav-link" href="<?php echo base_url('panel/contact'); ?>">Contact</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Services</a>
+                  <a class="nav-link" href="<?php echo base_url('panel/services'); ?>">Services</a>
                 </li>
           </ul>
         <ul class="navbar-nav ml-auto">
@@ -165,7 +164,7 @@
       <div class="row">
 
         <div class="col-lg-12">
-
+          <hr>
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
        <!--      <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -234,9 +233,21 @@
     </div>
     <!-- /.container -->
     <!-- Footer -->
-    <footer class="py-3" style="background-color: #007bff;">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Recycle 2018</p>
+    <footer class="py-4" style="background-color: #42b549;">
+      <div class="container-fluid text-white">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Bank Transfer</h5>
+            <img src="<?php echo base_url('assets/image/bni.png') ?>" class="img" style="width: 60px; height: 30px" alt="">
+          </div>
+          <div class="col-md-4">
+            <p class="text-center">Copyright &copy; Recycle 2018</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Jasa Pengiriman</h5>
+            <img src="<?php echo base_url('assets/image/jne.png') ?>" class="img" style="width: 60px; height: 30px" alt="">
+          </div>
+        </div>
       </div>
       <!-- /.container -->
     </footer>

@@ -57,15 +57,6 @@
         </li>
 
         <li class="">
-          <a href="<?php echo base_url('mahasiswa/iklan') ?>">
-            <i class="fa fa-file"></i> <span>Iklan</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-        </li>
-
-        <li class="">
           <a href="<?php echo base_url('mahasiswa/penjualan') ?>">
             <i class="fa fa-shopping-cart"></i> <span>Penjualan</span>
             <span class="pull-right-container">
