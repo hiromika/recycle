@@ -169,7 +169,7 @@
 
 
 <script type="text/javascript">
-  $('#btninfo').click(function() {
+  $('.btninfo').click(function() {
   $('#info').modal('show');  
   $("#idp").val($(this).closest('tr').children()[1].textContent);
   $("#tot").html($(this).closest('tr').children()[5].textContent);
