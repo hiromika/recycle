@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2018 at 04:16 PM
--- Server version: 10.1.9-MariaDB
+-- Generation Time: 06 Jul 2018 pada 21.28
+-- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -34,7 +34,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama`, `extensi`, `aktif`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama`, `extensi`, `aktif`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembelian`
+-- Struktur dari tabel `pembelian`
 --
 
 CREATE TABLE `pembelian` (
@@ -63,7 +63,7 @@ CREATE TABLE `pembelian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pembelian`
+-- Dumping data untuk tabel `pembelian`
 --
 
 INSERT INTO `pembelian` (`id_pem`, `id_produk`, `id_users`, `tgl_pem`, `subtotal`, `jenis_paket`, `harga_paket`, `catatan`, `status`, `metode`) VALUES
@@ -72,7 +72,30 @@ INSERT INTO `pembelian` (`id_pem`, `id_produk`, `id_users`, `tgl_pem`, `subtotal
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produk`
+-- Struktur dari tabel `ppc`
+--
+
+CREATE TABLE `ppc` (
+  `id_ppc` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL,
+  `ip_address` varchar(12) NOT NULL,
+  `tgl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `ppc`
+--
+
+INSERT INTO `ppc` (`id_ppc`, `id_produk`, `ip_address`, `tgl`) VALUES
+(14, 19, '::1', '2018-07-06 19:23:43'),
+(15, 15, '::1', '2018-07-06 19:23:49'),
+(16, 16, '::1', '2018-07-06 19:27:08'),
+(17, 14, '::1', '2018-07-06 19:27:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `produk`
 --
 
 CREATE TABLE `produk` (
@@ -90,7 +113,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `produk`
+-- Dumping data untuk tabel `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_users`, `nama`, `deskripsi`, `harga`, `kondisi`, `extensi`, `iklan`, `aktif`, `status`) VALUES
@@ -104,7 +127,7 @@ INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_users`, `nama`, `deskripsi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topup`
+-- Struktur dari tabel `topup`
 --
 
 CREATE TABLE `topup` (
@@ -118,16 +141,38 @@ CREATE TABLE `topup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `topup`
+-- Dumping data untuk tabel `topup`
 --
 
 INSERT INTO `topup` (`id_topup`, `id_users`, `keterangan`, `jumlah`, `extensi`, `timestamp`, `validasi`) VALUES
-(1, 3, 'asd', 4000, '.jpg', '2018-07-03 09:05:04', '1');
+(1, 3, 'asd', 4000, '.jpg', '2018-07-03 09:05:04', '1'),
+(9, 3, 'Edit by admin', 1000, '', '2018-07-06 18:15:06', '1'),
+(11, 3, 'Edit by admin', -1000, '', '2018-07-06 18:15:53', '1'),
+(12, 9, 'add', 10000, '', '2018-07-06 18:17:36', '1'),
+(13, 9, 'Edit by admin', 190000, '', '2018-07-06 18:20:13', '1'),
+(14, 9, 'Edit by admin', -180000, '', '2018-07-06 18:20:32', '1'),
+(15, 3, 'Edit by admin', 6000, '', '2018-07-06 18:52:00', '1'),
+(17, 3, 'Iklan klik', -500, '', '2018-07-06 19:16:03', '1'),
+(18, 3, 'Iklan klik', -500, '', '2018-07-06 19:17:17', '1'),
+(19, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:19', '1'),
+(20, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:24', '1'),
+(21, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:32', '1'),
+(22, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:50', '1'),
+(23, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:58', '1'),
+(24, 3, 'Iklan klik', -500, '', '2018-07-06 19:19:11', '1'),
+(25, 3, 'Iklan klik', -500, '', '2018-07-06 19:20:51', '1'),
+(26, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:08', '1'),
+(27, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:18', '1'),
+(28, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:24', '1'),
+(29, 3, 'Edit by admin', -3500, '', '2018-07-06 19:22:56', '1'),
+(30, 3, 'Iklan klik', -500, '', '2018-07-06 19:23:43', '1'),
+(31, 3, 'Edit by admin', 500, '', '2018-07-06 19:25:44', '1'),
+(32, 3, 'Iklan klik', -500, '', '2018-07-06 19:27:08', '1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -141,7 +186,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_trans`, `id_pem`, `bukti_foto`, `tgl_upload_bukti`, `status`, `no_resi`, `resi_foto`) VALUES
@@ -150,7 +195,7 @@ INSERT INTO `transaksi` (`id_trans`, `id_pem`, `bukti_foto`, `tgl_upload_bukti`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ulasan`
+-- Struktur dari tabel `ulasan`
 --
 
 CREATE TABLE `ulasan` (
@@ -164,7 +209,7 @@ CREATE TABLE `ulasan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ulasan`
+-- Dumping data untuk tabel `ulasan`
 --
 
 INSERT INTO `ulasan` (`id_ulasan`, `id_produk`, `tipe_user`, `id_user`, `timestamp`, `komentar`, `aktif`) VALUES
@@ -173,7 +218,7 @@ INSERT INTO `ulasan` (`id_ulasan`, `id_produk`, `tipe_user`, `id_user`, `timesta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -194,7 +239,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id_users`, `nim`, `username`, `password`, `nama`, `alamat`, `kota_kab`, `telp`, `email`, `extensi`, `aktif`, `level`, `nama_bank`, `no_rek`) VALUES
@@ -220,6 +265,12 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`id_pem`);
+
+--
+-- Indexes for table `ppc`
+--
+ALTER TABLE `ppc`
+  ADD PRIMARY KEY (`id_ppc`);
 
 --
 -- Indexes for table `produk`
@@ -266,6 +317,11 @@ ALTER TABLE `kategori`
 ALTER TABLE `pembelian`
   MODIFY `id_pem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `ppc`
+--
+ALTER TABLE `ppc`
+  MODIFY `id_ppc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
@@ -274,7 +330,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `topup`
 --
 ALTER TABLE `topup`
-  MODIFY `id_topup` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_topup` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `transaksi`
 --

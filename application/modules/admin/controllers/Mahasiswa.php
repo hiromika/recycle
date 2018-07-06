@@ -71,7 +71,7 @@ class Mahasiswa extends MY_Controller {
 			$data['view'] = 'v_mahasiswa_edit';
 			$data['title'] = 'Mahasiswa';
 			$data['side'] = 'index';
-			$data['mahasiswa'] = $this->db->query("SELECT * FROM users WHERE id_users = '$id'")->result()[0];
+			$data['mahasiswa'] = $this->db->query("SELECT a.*, SUM(jumlah) as jum FROM users a LEFT JOIN topup b USING(id_users) WHERE a.id_users = '$id'")->result()[0];
 			$this->master($data);
 		}else{
 			redirect('admin');
@@ -83,6 +83,29 @@ class Mahasiswa extends MY_Controller {
 			$nim = $this->input->post('nim');
 			$nama = $this->input->post('nama');
 			$aktif = $this->input->post('status');
+			$jum = $this->input->post('jumlah');
+
+			$get = $this->db->query("SELECT SUM(jumlah) as jum FROM topup WHERE id_users = '$id_users'")->row_array();
+			
+			if ($jum > $get['jum']) {
+				$saldo = $jum - $get['jum'];
+				$object = array(
+				 'id_users' 	=> $id_users,
+				 'keterangan'	=> 'Edit by admin',
+				 'jumlah'		=> $saldo,
+				 'validasi'		=> '1'
+				);
+				$this->db->insert('topup', $object);
+			}elseif ($jum < $get['jum']) {
+				$saldo = $get['jum']- $jum;
+				$object = array(
+				 'id_users' 	=> $id_users,
+				 'keterangan'	=> 'Edit by admin',
+				 'jumlah'		=> '-'.$saldo,
+				 'validasi'		=> '1'
+				);
+				$this->db->insert('topup', $object);
+			}
 			
 			$data_update = array(
 				'nim' => $nim,

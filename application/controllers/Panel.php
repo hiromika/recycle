@@ -15,7 +15,7 @@ class Panel extends MY_Controller {
 	function home($id_kategori = null){
 		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
 
-		$banner = $this->db->query("SELECT id_produk, b.nama kategori, c.nama user, a.nama, deskripsi, harga, a.extensi FROM produk a JOIN kategori b USING(id_kategori) JOIN users c USING(id_users) WHERE a.aktif = '1' AND a.status = 0 ORDER BY rand() LIMIT 5")->result_array();
+		$banner = $this->db->query("SELECT id_produk, b.nama kategori, c.nama user, a.nama, deskripsi, harga, a.extensi FROM produk a JOIN kategori b USING(id_kategori) JOIN users c USING(id_users) WHERE a.aktif = '1' AND a.iklan = '2' AND a.status = 0 ORDER BY rand() LIMIT 5")->result_array();
 
 		$daftar = $this->kategori($id_kategori);
 
@@ -50,6 +50,7 @@ class Panel extends MY_Controller {
 			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
 			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
 			$this->db->where('a.aktif', 1);
+			$this->db->where('a.iklan', 2);
 			$this->db->where('a.status', 0);
 			return	$this->db->get()->result_array();
 		}else{
@@ -58,6 +59,7 @@ class Panel extends MY_Controller {
 			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
 			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
 			$this->db->where('a.aktif', 1);
+			$this->db->where('a.iklan', 2);
 			$this->db->where('a.status', 0);
 			$this->db->where('b.id_kategori', $id_kategori);
 			return	$this->db->get()->result_array();
@@ -69,7 +71,7 @@ class Panel extends MY_Controller {
 		$post = $this->input->post();
 		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
 
-		$banner = $this->db->query("SELECT id_produk, b.nama kategori, c.nama user, a.nama, deskripsi, harga, a.extensi FROM produk a JOIN kategori b USING(id_kategori) JOIN users c USING(id_users) WHERE a.aktif = '1' AND a.status = 0 ORDER BY rand() LIMIT 5")->result_array();
+		$banner = $this->db->query("SELECT id_produk, b.nama kategori, c.nama user, a.nama, deskripsi, harga, a.extensi FROM produk a JOIN kategori b USING(id_kategori) JOIN users c USING(id_users) WHERE a.aktif = '1' AND a.iklan = '2' AND a.status = 0 ORDER BY rand() LIMIT 5")->result_array();
 
 		if ($post['kategori'] == 0) {
 			$this->db->select('*, a.nama as produk_name, a.id_users as users, a.extensi as ext');
@@ -77,6 +79,7 @@ class Panel extends MY_Controller {
 			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
 			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
 			$this->db->where('a.aktif', 1);
+			$this->db->where('a.iklan', 2);
 			$this->db->where('a.status', 0);
 			$this->db->like('a.nama', $post['cari'], 'BOTH');
 		$daftar = 	$this->db->get()->result_array();
@@ -86,6 +89,7 @@ class Panel extends MY_Controller {
 			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
 			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
 			$this->db->where('a.aktif', 1);
+			$this->db->where('a.iklan', 2);
 			$this->db->where('a.status', 0);
 			$this->db->where('a.id_kategori', $post['id_kategori']);
 			$this->db->like('a.nama', $post['cari'], 'BOTH');
@@ -99,24 +103,54 @@ class Panel extends MY_Controller {
 
 
 	public function detail($idp){
-		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
 
-		$this->db->select('*, a.nama as produk_name, a.id_users as users, a.extensi as ext, b.nama as k_name');
+			$this->db->select('*, a.nama as produk_name, a.id_users as users, a.extensi as ext, b.nama as k_name');
 			$this->db->from('produk a');
 			$this->db->join('kategori b', 'b.id_kategori = a.id_kategori', 'left');
 			$this->db->join('users c', 'c.id_users = a.id_users', 'left');
 			$this->db->where('a.id_produk', $idp);
 		$data['produk'] = $this->db->get()->row_array();
 		
-		$this->db->select('a.kota_kab');
-		$this->db->from('users a');
-		$this->db->join('produk b', 'b.id_users = a.id_users', 'left');
-		$this->db->where('b.id_produk', $idp);
+		$ip = $this->input->ip_address();
+
+		$this->db->where('ip_address', $ip);
+		$this->db->where('id_produk', $idp);
+		$this->db->where('tgl !=', date('Y-m-d'));
+		$get = $this->db->get('ppc');
+
+		if ($get->num_rows() <= 0) {
+			$id_users = $data['produk']['users'];
+			$sal = $this->db->query("SELECT SUM(jumlah) as jum FROM topup WHERE id_users = '$id_users'")->row_array();
+			if ($sal['jum'] >= 500) {
+					$object = array(
+					 'id_users' 	=> $data['produk']['users'],
+					 'keterangan'	=> 'Iklan klik',
+					 'jumlah'		=> '-500',
+					 'validasi'		=> '1'
+					);
+					$this->db->insert('topup', $object);	
+			}else{
+				$this->db->where('id_users', $id_users);
+				$this->db->update('produk', array('iklan' => 0));
+			}
+
+			$this->db->insert('ppc', array('ip_address'=> $ip, 'id_produk' => $idp));
+
+		}
+
+			$this->db->select('a.kota_kab');
+			$this->db->from('users a');
+			$this->db->join('produk b', 'b.id_users = a.id_users', 'left');
+			$this->db->where('b.id_produk', $idp);
 		$getasal = $this->db->get()->row_array();
 
+		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
+
 		$data['asal']   = $getasal['kota_kab'];
+		
 		$data['tujuan'] = $this->session->userdata('kota_kab');
-		$this->db->where('id_users', $this->session->userdata('id_users'));
+
+			$this->db->where('id_users', $this->session->userdata('id_users'));
 		$data['user'] = $this->db->get('users')->row_array();
 
 		$this->load->view('produk',$data);

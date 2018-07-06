@@ -37,6 +37,14 @@
           </div>
           <div class="box-body">
             <div class="form-group">
+              <label class="col-sm-2 control-label">Saldo</label>
+              <div class="col-sm-10">
+                <input type="number" name="jumlah" value="<?php echo $users->jum?>" class="form-control" placeholder="...">
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
               <label class="col-sm-2 control-label">Status</label>
               <div class="col-sm-2">
                 <select name="status" class="form-control">
