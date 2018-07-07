@@ -203,7 +203,7 @@
 				 ?>
 
 				 <div class="col-lg-4 col-md-6 mb-4">
-	             <div class="card h-100">
+	             <div class="card h-100" <?php echo ($value['iklan']==2)?'style="border: 1.5px solid gold;"':'' ?>>
 	                <a href="<?php echo base_url('panel/detail/').$value['id_produk'];?>"><img class="img card-img-top" style="height: 200px;" src="<?php echo base_url('produk/').$value['id_produk'].$value['ext']?>" alt=""></a>
 	                <div class="card-body text-center">
 	                  <h4 class="card-title">
