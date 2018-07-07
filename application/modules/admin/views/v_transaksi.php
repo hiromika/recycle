@@ -91,6 +91,9 @@
                   }else if($value['status'] == 3 && $value['sts_t'] == 1){
                     $sts  = 'Menuggu Konfirmasi Penyelesaian';
                     $aksi = '<a href="KonPen/'.$value['id_pem'].'" title="" onclick="return confirm(\''.'Konfirmasi Selesai ?'.'\')" class="btn btn-sm btn-warning">Konfirmasi Selesai</a>';
+                  }elseif ($value['status'] == 2 && $value['sts_t'] == 1) {
+                    $sts = "Menuggu Barang Diterima Pembeli.";
+                    $aksi = "";
                   }else{
                     $sts = 'Transaksi Selesai';
                     $aksi = '';

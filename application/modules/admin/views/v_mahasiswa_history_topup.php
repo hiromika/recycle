@@ -54,6 +54,11 @@
                     <th style="width: 5%;">:</th>
                     <td><?php echo $mhs['nama_bank']." No Rek :".$mhs['no_rek']; ?></td>
                   </tr>
+                  <tr>
+                    <th style="width: 10%;">KTM</th>
+                    <th style="width: 5%;">:</th>
+                    <td><img src="<?php echo base_url('ktm/'.$mhs['id_users'].$mhs['extensi']) ?>" alt="" style="width: 150px; height: 100px;" class="img img-thumbnail img-fluid"></td>
+                  </tr>
                 </thead>
               </table>
               <hr>

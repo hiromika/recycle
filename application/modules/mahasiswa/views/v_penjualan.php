@@ -84,6 +84,17 @@
                   <?php if ($value['status'] == 1 && $value['sts_t'] == 1) {
                     $sts = "Menuggu Pengiriman";
                     $aksi = '<button type="button" class="btn btn-success btn-sm u_resi" data-toggle="modal" data-target="#uploadResi">Upload Resi</button>';
+                  }else if($value['status'] == 2 && $value['sts_t'] == 1){
+                    $sts  = 'Menuggu Konfirmasi Barang Diterima <br>  <table class="table">
+                              <tr>  
+                                <th>No Resi</th>
+                                <td>'.$value['no_resi'].'</td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <img src="'.base_url($value['resi_foto']).'" alt="" style="width: 150px; height: 100px;" class="img img-thumbnail img-fluid">
+                            ';
+                    $aksi = '<button type="button" class="btn btn-warning btn-sm u_resi" data-toggle="modal" data-target="#uploadResi">Update Resi</button>'; 
                   }else if($value['status'] == 3 && $value['sts_t'] == 1){
                     $sts  = 'Barang Telah Diterima, Menuggu Konfirmasi Admin';
                     $aksi = '';

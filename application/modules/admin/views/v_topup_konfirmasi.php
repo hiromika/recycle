@@ -28,6 +28,7 @@
                   <th>Nama Mahasiswa</th>
                   <th>Waktu</th>
                   <th>Jumlah</th>
+                  <th>Bukti Transfer</th>
                   <th width="1"></th>
                 </tr>
                 </thead>
@@ -41,7 +42,8 @@
                       <td><?php echo $d->nama?></td>
                       <td><?php echo $d->timestamp?></td>
                       <td class="text-right"><?php echo $d->jumlah?></td>
-                      <td><a href="<?php echo base_url('admin/topup/validasi/').$d->id_topup?>" title="validasi" class="btn btn-xs btn-success" onclick='return confirm("Apakah anda yakin validasi top up ini?")''><i class="fa fa-check-square-o"></i> </a></td>
+                      <td><img src="<?php echo base_url('bukti/').$d->id_topup.$d->extensi?>" width="256"></td>
+                      <td><a href="<?php echo base_url('admin/topup/validasi/').$d->id_topup?>" title="validasi" class="btn btn-xs btn-success" onclick='return confirm("Apakah anda yakin validasi top up ini?")'><i class="fa fa-check-square-o"></i> </a></td>
                     </tr>
                   <?php
                       $i++;

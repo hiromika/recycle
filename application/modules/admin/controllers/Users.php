@@ -57,9 +57,10 @@ class Users extends MY_Controller {
 			$aktif = $this->input->post('status');
 			
 			$data_insert = array(
-				'username' => $username,
-				'nama' => $nama,
-				'aktif' => $aktif
+				'username' 	=> $username,
+				'nama' 		=> $nama,
+				'aktif' 	=> $aktif,
+				'password'	=> md5($username),
 			);
 			$this->db->insert('users',$data_insert);
 			$id = $this->db->insert_id();
@@ -99,29 +100,29 @@ class Users extends MY_Controller {
 			$username = $this->input->post('username');
 			$nama = $this->input->post('nama');
 			$aktif = $this->input->post('status');
-			$jum = $this->input->post('jumlah');
+			// $jum = $this->input->post('jumlah');
 
-			$get = $this->db->query("SELECT SUM(jumlah) as jum FROM topup WHERE id_users = '$id_users'")->row_array();
+			// $get = $this->db->query("SELECT SUM(jumlah) as jum FROM topup WHERE id_users = '$id_users'")->row_array();
 			
-			if ($jum > $get['jum']) {
-				$saldo = $jum - $get['jum'];
-				$object = array(
-				 'id_users' 	=> $id_users,
-				 'keterangan'	=> 'Edit by admin',
-				 'jumlah'		=> $saldo,
-				 'validasi'		=> '1'
-				);
-				$this->db->insert('topup', $object);
-			}elseif ($jum < $get['jum']) {
-				$saldo = $get['jum']- $jum;
-				$object = array(
-				 'id_users' 	=> $id_users,
-				 'keterangan'	=> 'Edit by admin',
-				 'jumlah'		=> '-'.$saldo,
-				 'validasi'		=> '1'
-				);
-				$this->db->insert('topup', $object);
-			}
+			// if ($jum > $get['jum']) {
+			// 	$saldo = $jum - $get['jum'];
+			// 	$object = array(
+			// 	 'id_users' 	=> $id_users,
+			// 	 'keterangan'	=> 'Edit by admin',
+			// 	 'jumlah'		=> $saldo,
+			// 	 'validasi'		=> '1'
+			// 	);
+			// 	$this->db->insert('topup', $object);
+			// }elseif ($jum < $get['jum']) {
+			// 	$saldo = $get['jum']- $jum;
+			// 	$object = array(
+			// 	 'id_users' 	=> $id_users,
+			// 	 'keterangan'	=> 'Edit by admin',
+			// 	 'jumlah'		=> '-'.$saldo,
+			// 	 'validasi'		=> '1'
+			// 	);
+			// 	$this->db->insert('topup', $object);
+			// }
 
 
 			$data_update = array(

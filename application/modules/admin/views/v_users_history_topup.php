@@ -41,15 +41,15 @@
                     <td><?php echo $mhs['telp']; ?></td>
                   </tr>
                   <tr>
-                    <th style="width: 10%;">Total Saldo</th>
+                    <th style="width: 10%;">KTP</th>
                     <th style="width: 5%;">:</th>
-                    <td><?php echo $totsaldo['saldo']; ?></td>
+                    <td><img src="<?php echo base_url('ktp/'.$mhs['id_users'].$mhs['extensi']) ?>" alt="" style="width: 150px; height: 100px;" class="img img-thumbnail img-fluid"></td>
                   </tr>
                 </thead>
               </table>
               <hr>
               <!-- Trigger the modal with a button -->
-              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Tambah Saldo</button>
+              <!-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Tambah Saldo</button>
               <hr>
               <table id="example1" class="table table-bordered table-hover table-striped table-hover">
                 <caption>History Top Up</caption>
@@ -99,7 +99,7 @@
                     }
                   ?>
                 </tbody>
-              </table>
+              </table> -->
             </div>
             <!-- /.box-body -->
           </div>

@@ -570,7 +570,7 @@
                   keyboard : false,
               });
               $('#id_pem').val(obj.id_pem);
-              $('#totbayar').html('<strong>Rp.'+obj.subtot+'</strong>');
+              $('#totbayar').html('<strong>'+obj.subtot+'</strong>');
               $('#paket').html(obj.paket);
               $('#jml').html(obj.jml);
               $('#ctt').html(obj.ctt);

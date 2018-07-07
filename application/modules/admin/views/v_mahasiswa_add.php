@@ -17,7 +17,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="<?php echo base_url('admin/mahasiswa/add'); ?>" method="POST">
+        <form class="form-horizontal" action="<?php echo base_url('admin/mahasiswa/add'); ?>" method="POST" enctype="multipart/form-data">
           <div class="box-body">
             <div class="form-group">
               <label class="col-sm-2 control-label">NIM</label>
@@ -42,6 +42,15 @@
                   <option value="1">Aktif</option>
                   <option value="0">Tidak Aktif</option>
                 </select>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">KTM</label>
+              <div class="col-sm-10">
+                <input type="file" class="form-control" name="ktm">
+                <p class="help-block">extensi file harus jpg atau png</p>
               </div>
             </div>
           </div>

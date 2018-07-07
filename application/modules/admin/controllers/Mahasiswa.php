@@ -55,12 +55,28 @@ class Mahasiswa extends MY_Controller {
 			$aktif = $this->input->post('status');
 			
 			$data_insert = array(
-				'nim'	=> $nim,
-				'nama' => $nama,
-				'aktif' => $aktif,
-				'level'	=> 'mahasiswa'
+				'nim'		=> $nim,
+				'nama' 		=> $nama,
+				'aktif' 	=> $aktif,
+				'level'		=> 'mahasiswa',
+				'password'	=> md5($username),
+
 			);
 			$this->db->insert('users',$data_insert);
+			$id = $this->db->insert_id();
+			$path = realpath('./ktm');
+			$config['upload_path']    = $path;            
+			$config['allowed_types']  = 'jpg|png';
+			$config['max_size']       = '50000';
+			$config['file_name']      = $id;
+			$config['overwrite'] 	  = TRUE;
+			$this->load->library('upload', $config);
+			if($this->upload->do_upload('ktm')){
+				$img_data=$this->upload->data();
+				$file = array('extensi' => $img_data['file_ext'] , );
+				$this->db->where('id_users',$id);
+				$this->db->update('users',$file);
+			}
 			redirect('admin/mahasiswa');
 		}else{
 			redirect('admin');
@@ -114,7 +130,22 @@ class Mahasiswa extends MY_Controller {
 			);
 			$this->db->where('id_users',$id_users);
 			$this->db->update('users',$data_update);
-			redirect('admin/mahasiswa');
+
+			$path = realpath('./ktm');
+			$config['upload_path']    = $path;            
+			$config['allowed_types']  = 'jpg|png';
+			$config['max_size']       = '50000';
+			$config['file_name']      = $id_users;
+			$config['overwrite'] 	  = TRUE;
+			$this->load->library('upload', $config);
+			if($this->upload->do_upload('ktm')){
+				$img_data=$this->upload->data();
+				$file = array('extensi' => $img_data['file_ext'] , );
+				$this->db->where('id_users',$id_users);
+				$this->db->update('users',$file);
+				redirect('admin/mahasiswa');
+			}
+			
 		}else{
 			redirect('admin');
 		}

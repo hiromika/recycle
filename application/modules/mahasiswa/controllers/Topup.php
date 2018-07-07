@@ -50,12 +50,11 @@ class Topup extends MY_Controller {
 	function add(){
 		if($this->input->post('submit')){
 			$id_users = $this->session->userdata('id_users');
-			$keterangan = $this->input->post('keterangan');
 			$jumlah = $this->input->post('jumlah');
 			
 			$data_insert = array(
 				'id_users' => $id_users,
-				'keterangan' => $keterangan,
+				'keterangan' => 'TopUp',
 				'jumlah' => $jumlah,
 				'validasi' => '0',
 			);

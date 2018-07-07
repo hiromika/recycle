@@ -27,7 +27,7 @@
                   <th>No</th>
                   <th>Username</th>
                   <th>Nama Users</th>
-                  <th>Saldo</th>
+                  <!-- <th>Saldo</th> -->
                   <th>Status</th>
                   <th width="1">Aksi</th>
                 </tr>
@@ -41,7 +41,7 @@
                       <td width="1"><?php echo $i?></td>
                       <td><?php echo $d->username?></td>
                       <td><?php echo $d->nama?></td>
-                      <td class="text-right"><?php echo $d->saldo?></td>
+                      <!-- <td class="text-right"><?php echo $d->saldo?></td> -->
                       <?php
                         if($d->aktif == 1){
                       ?>

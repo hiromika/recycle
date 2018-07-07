@@ -152,6 +152,15 @@ class Produk extends MY_Controller {
 		}
 	}
 
+
+	function doDelete($id){
+
+		$this->db->where('id_produk', $id);
+		$this->db->delete('produk');
+
+		redirect('mahasiswa/produk');
+	}
+
 	function doReq($idp){
 		$this->db->where('id_produk', $idp);
 		$this->db->update('produk', array('iklan' =>  1,));

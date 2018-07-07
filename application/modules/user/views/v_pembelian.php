@@ -85,7 +85,6 @@
                                 <td>'.$value['no_resi'].'</td>
                               </tr>
                             </table>
-                            <hr>
                             <img src="'.base_url($value['resi_foto']).'" alt="" style="width: 150px; height: 100px;" class="img img-thumbnail img-fluid">
                      ';
                     $aksi = '<a href="KonPen/'.$value['id_pem'].'" class="btn btn-warning btn-sm" title="Konfimasi" onclick="return confirm(\''.'Konfirmasi Diterima ?'.'\')">Konfimasi Barang Diterima</a>';

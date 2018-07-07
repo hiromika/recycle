@@ -70,7 +70,7 @@ class Mahasiswa extends MY_Controller {
 		$data['title'] = 'Penjualan';
 		$data['side'] = 'penjualan';
 		$data['view'] = 'v_penjualan';
-				$this->db->select('a.*, b.harga, b.extensi, b.deskripsi, b.nama as nama_p, c.nama as nama_penjual, d.status as sts_t, d.bukti_foto, e.nama as nama_pem, e.alamat as alamat_p, e.kota_kab as kota_kab_p');
+				$this->db->select('a.*, b.harga, b.extensi, b.deskripsi, b.nama as nama_p, c.nama as nama_penjual, d.status as sts_t, d.bukti_foto, e.nama as nama_pem, e.alamat as alamat_p, e.kota_kab as kota_kab_p, d.no_resi, d.resi_foto');
 		$this->db->from('pembelian a');
 		$this->db->join('produk b', 'b.id_produk = a.id_produk', 'left');
 		$this->db->join('users c', 'c.id_users = b.id_users', 'left');
