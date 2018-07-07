@@ -73,7 +73,7 @@
                       <?php   
                         }
                       ?>
-                      <?php $saldo = $this->db->query("SELECT SUM(jumlah) saldo FROM topup WHERE id_users = '$d->id_users' AND validasi = '1'")->result()[0]->saldo; ?> ?>
+                      <?php $saldo = $this->db->query("SELECT SUM(jumlah) saldo FROM topup WHERE id_users = '$d->id_users' AND validasi = '1'")->result()[0]->saldo; ?>
                       <td>
                         <a href="<?php echo base_url('admin/produk/edit/').$d->id_produk?>" title="edit" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
                         <a href="<?php echo base_url('admin/produk/doDelete/').$d->id_produk?>" onclick="return confirm('Hapus produk ini ?')" title="edit" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
