@@ -25,7 +25,7 @@
                 <th style="display: none;">idp</th>
                 <th style="width: 10%;">Tgl Pembelian</th>
                 <th style="width: 25%;">Detail Produk</th>
-                <!-- <th>Jumlah</th> -->
+                <th>Jumlah</th>
                 <th>Paket Pengiriman</th>
                 <th>Total</th>
                 <th>Status</th>
@@ -58,11 +58,11 @@
                       </tr>
                     
                   </table></td>
-                  <!-- <td><?php echo $value['jumlah'] ?></td> -->
+                  <td><?php echo $value['jumlah'] ?></td>
                   <td>JNE <?php echo $value['jenis_paket'].' : Rp'. number_format($value['harga_paket'],0,',','.');  ?></td>
                   <td>Rp. <?php echo number_format($value['subtotal'],0,',','.'); ?></td>
                   <?php if ($value['status'] == 0) {
-                    $sts  = "Belum Terbayarkan.";
+                    $sts  = "Menuggu Pembayaran.";
                     $aksi = '<button type="button"  class="bnt btn-sm btn-info btninfo" data-toggle="modal">Lanjutkan Pembayaran</button>'; 
                   }else if ($value['status'] == 1 && $value['sts_t'] == 0) {
                     $sts  = "Menuggu Konfimasi Oleh Admin.";
@@ -171,6 +171,6 @@
   $('.btninfo').click(function() {
   $('#info').modal('show');  
   $("#idp").val($(this).closest('tr').children()[1].textContent);
-  $("#tot").html($(this).closest('tr').children()[5].textContent);
+  $("#tot").html($(this).closest('tr').children()[6].textContent);
   });
 </script>

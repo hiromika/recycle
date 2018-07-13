@@ -29,7 +29,6 @@
                 <th style="width: 10%;">Tgl Pembeli</th>
                 <th style="width: 25%;">Detail Produk</th>
                 <th>Detail Pembelian</th>
-                <!-- <th>Jumlah</th> -->
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
@@ -60,7 +59,6 @@
                       </tr>
                     
                   </table></td>
-                  <!-- <td><?php echo $value['jumlah'] ?></td> -->
                   <td>
                     <table class="table table-bordered">
                       <tr>
@@ -72,12 +70,17 @@
                         <td>JNE <?php echo $value['jenis_paket'].' : Rp'. number_format($value['harga_paket'],0,',','.');  ?></td>
                       </tr>
                       <tr>
+                        <th>Jumlah</th>
+                      <td><?php echo $value['jumlah'] ?></td>  
+                      </tr>
+                      <tr>
                         <th>Total Pembayaran</th>
                         <td>Rp. <?php echo number_format($value['subtotal'],0,',','.'); ?></td>
                       </tr>
                     </table>
                   </td>
-                  <?php if ($value['status'] == 1 && $value['sts_t'] == 0) {
+                  <?php
+                    if ($value['status'] == 1 && $value['sts_t'] == 0) {
                     $sts  = "Menuggu Konfimasi Pembayaran.";
                     $aksi = '<a href="KonPem/'.$value['id_pem'].'" title="" onclick="return confirm(\''.'Konfirmasi Pembayaran ?'.'\')" class="btn btn-sm btn-warning">Konfirmasi Pembayaran</a>
                     <hr>

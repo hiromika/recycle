@@ -21,7 +21,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped table-hover">
+              <table id="example1" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th width="1"></th>
@@ -42,7 +42,27 @@
                       </td>
                       <td><?php echo $d->timestamp?></td>
                       <td><?php echo $d->jumlah?></td>
-                      <td><?php echo $d->keterangan?></td>
+                      <td>
+                        <table class="table table-bordered">
+                      <tr>
+                        <td colspan="2"> <?php echo $d->keterangan?></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <img class="card-img-top img img-thumbnail img-fluid" style="width: 150px; height: 100px;" src="<?php echo base_url('produk/').$d->id_produk.$d->extensi?>" alt="">  
+                        </td>
+                      </tr>
+                      <tr>
+                        <th style="width: 30%;">Nama Produk</th>
+                        <td><?php echo $d->nama ?></td>
+                      </tr>
+                      <tr>
+                        <th style="width: 30%;">Harga</th>
+                        <td>Rp. <?php echo number_format($d->harga,0,',','.'); ?></td>
+                      </tr>
+                    
+                  </table>
+                      </td>
                       <?php
                         if($d->validasi == 1){
                       ?>

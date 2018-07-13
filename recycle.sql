@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Jul 2018 pada 21.28
+-- Generation Time: 13 Jul 2018 pada 21.10
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -54,6 +54,7 @@ CREATE TABLE `pembelian` (
   `id_produk` int(11) NOT NULL,
   `id_users` int(11) NOT NULL,
   `tgl_pem` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `jumlah` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
   `jenis_paket` varchar(11) NOT NULL,
   `harga_paket` int(11) NOT NULL,
@@ -66,8 +67,11 @@ CREATE TABLE `pembelian` (
 -- Dumping data untuk tabel `pembelian`
 --
 
-INSERT INTO `pembelian` (`id_pem`, `id_produk`, `id_users`, `tgl_pem`, `subtotal`, `jenis_paket`, `harga_paket`, `catatan`, `status`, `metode`) VALUES
-(7, 14, 7, '2018-07-01 17:49:28', 57000, 'OKE', 55000, 'HItam', 3, 1);
+INSERT INTO `pembelian` (`id_pem`, `id_produk`, `id_users`, `tgl_pem`, `jumlah`, `subtotal`, `jenis_paket`, `harga_paket`, `catatan`, `status`, `metode`) VALUES
+(7, 14, 7, '2018-07-01 17:49:28', 0, 57000, 'OKE', 55000, 'HItam', 3, 1),
+(8, 15, 7, '2018-07-07 13:17:29', 0, 77222, 'OKE', 55000, 'zxc', 3, 1),
+(9, 14, 7, '2018-07-07 13:19:00', 0, 57000, 'OKE', 55000, 'zx', 1, 1),
+(11, 14, 3, '2018-07-13 18:24:20', 2, 10000, 'CTC', 6000, 'HItam', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -87,10 +91,10 @@ CREATE TABLE `ppc` (
 --
 
 INSERT INTO `ppc` (`id_ppc`, `id_produk`, `ip_address`, `tgl`) VALUES
-(14, 19, '::1', '2018-07-06 19:23:43'),
-(15, 15, '::1', '2018-07-06 19:23:49'),
-(16, 16, '::1', '2018-07-06 19:27:08'),
-(17, 14, '::1', '2018-07-06 19:27:17');
+(22, 18, '::1', '2018-07-12 18:43:45'),
+(23, 17, '::1', '2018-07-12 18:43:58'),
+(24, 14, '::1', '2018-07-12 18:44:03'),
+(25, 16, '::1', '2018-07-12 18:44:09');
 
 -- --------------------------------------------------------
 
@@ -118,11 +122,10 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_users`, `nama`, `deskripsi`, `harga`, `kondisi`, `extensi`, `iklan`, `aktif`, `status`) VALUES
 (14, 1, 3, 'Bambang', 'asd', 2000, 0, '.png', 0, '1', 0),
-(15, 1, 3, 'Juki', 'sdad', 22222, 0, '.png', 0, '1', 0),
+(15, 1, 3, 'Juki', 'sdad', 22222, 0, '.png', 0, '1', 1),
 (16, 1, 3, 'asdasdasd', 'sssssss', 2147483647, 0, '.png', 0, '1', 0),
 (17, 1, 3, 'zxc', '2asdasd', 2343043, 0, '.jpg', 0, '1', 0),
-(18, 1, 3, 'test', '5121', 12212, 0, '.png', 0, '1', 0),
-(19, 1, 3, 'asdasdasd', 'm,m,m,m,', 200000, 0, '.jpg', 0, '1', 0);
+(18, 1, 3, 'test', '5121', 12212, 0, '.png', 0, '1', 0);
 
 -- --------------------------------------------------------
 
@@ -137,37 +140,52 @@ CREATE TABLE `topup` (
   `jumlah` int(11) NOT NULL,
   `extensi` varchar(4) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `validasi` enum('1','0') NOT NULL DEFAULT '0'
+  `validasi` enum('1','0') NOT NULL DEFAULT '0',
+  `ppc_produk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `topup`
 --
 
-INSERT INTO `topup` (`id_topup`, `id_users`, `keterangan`, `jumlah`, `extensi`, `timestamp`, `validasi`) VALUES
-(1, 3, 'asd', 4000, '.jpg', '2018-07-03 09:05:04', '1'),
-(9, 3, 'Edit by admin', 1000, '', '2018-07-06 18:15:06', '1'),
-(11, 3, 'Edit by admin', -1000, '', '2018-07-06 18:15:53', '1'),
-(12, 9, 'add', 10000, '', '2018-07-06 18:17:36', '1'),
-(13, 9, 'Edit by admin', 190000, '', '2018-07-06 18:20:13', '1'),
-(14, 9, 'Edit by admin', -180000, '', '2018-07-06 18:20:32', '1'),
-(15, 3, 'Edit by admin', 6000, '', '2018-07-06 18:52:00', '1'),
-(17, 3, 'Iklan klik', -500, '', '2018-07-06 19:16:03', '1'),
-(18, 3, 'Iklan klik', -500, '', '2018-07-06 19:17:17', '1'),
-(19, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:19', '1'),
-(20, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:24', '1'),
-(21, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:32', '1'),
-(22, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:50', '1'),
-(23, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:58', '1'),
-(24, 3, 'Iklan klik', -500, '', '2018-07-06 19:19:11', '1'),
-(25, 3, 'Iklan klik', -500, '', '2018-07-06 19:20:51', '1'),
-(26, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:08', '1'),
-(27, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:18', '1'),
-(28, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:24', '1'),
-(29, 3, 'Edit by admin', -3500, '', '2018-07-06 19:22:56', '1'),
-(30, 3, 'Iklan klik', -500, '', '2018-07-06 19:23:43', '1'),
-(31, 3, 'Edit by admin', 500, '', '2018-07-06 19:25:44', '1'),
-(32, 3, 'Iklan klik', -500, '', '2018-07-06 19:27:08', '1');
+INSERT INTO `topup` (`id_topup`, `id_users`, `keterangan`, `jumlah`, `extensi`, `timestamp`, `validasi`, `ppc_produk`) VALUES
+(1, 3, 'asd', 4000, '.jpg', '2018-07-03 09:05:04', '1', 0),
+(9, 3, 'Edit by admin', 1000, '', '2018-07-06 18:15:06', '1', 0),
+(11, 3, 'Edit by admin', -1000, '', '2018-07-06 18:15:53', '1', 0),
+(12, 9, 'add', 10000, '', '2018-07-06 18:17:36', '1', 0),
+(13, 9, 'Edit by admin', 190000, '', '2018-07-06 18:20:13', '1', 0),
+(14, 9, 'Edit by admin', -180000, '', '2018-07-06 18:20:32', '1', 0),
+(15, 3, 'Edit by admin', 6000, '', '2018-07-06 18:52:00', '1', 0),
+(17, 3, 'Iklan klik', -500, '', '2018-07-06 19:16:03', '1', 0),
+(18, 3, 'Iklan klik', -500, '', '2018-07-06 19:17:17', '1', 0),
+(19, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:19', '1', 0),
+(20, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:24', '1', 0),
+(21, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:32', '1', 0),
+(22, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:50', '1', 0),
+(23, 3, 'Iklan klik', -500, '', '2018-07-06 19:18:58', '1', 0),
+(24, 3, 'Iklan klik', -500, '', '2018-07-06 19:19:11', '1', 0),
+(25, 3, 'Iklan klik', -500, '', '2018-07-06 19:20:51', '1', 0),
+(26, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:08', '1', 0),
+(27, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:18', '1', 0),
+(28, 3, 'Iklan klik', -500, '', '2018-07-06 19:21:24', '1', 0),
+(29, 3, 'Edit by admin', -3500, '', '2018-07-06 19:22:56', '1', 0),
+(30, 3, 'Iklan klik', -500, '', '2018-07-06 19:23:43', '1', 0),
+(31, 3, 'Edit by admin', 500, '', '2018-07-06 19:25:44', '1', 0),
+(32, 3, 'Iklan klik', -500, '', '2018-07-06 19:27:08', '1', 0),
+(33, 3, 'Edit by admin', 500, '', '2018-07-07 06:21:26', '1', 0),
+(34, 3, 'Iklan klik', -500, '', '2018-07-07 06:33:36', '1', 0),
+(35, 3, 'Edit by admin', 6000, '', '2018-07-07 13:16:33', '1', 0),
+(36, 3, 'Iklan klik', -500, '', '2018-07-07 13:17:19', '1', 0),
+(37, 3, NULL, 20000, '.png', '2018-07-07 16:10:29', '0', 0),
+(38, 3, 'TopUp', 50000, '.png', '2018-07-07 16:11:57', '0', 0),
+(39, 10, 'Edit by admin', 20000, '', '2018-07-07 16:18:19', '1', 0),
+(40, 11, 'Edit by admin', 20000, '', '2018-07-07 16:43:24', '1', 0),
+(41, 3, 'Iklan klik', -500, '', '2018-07-12 18:25:35', '1', 18),
+(42, 3, 'Iklan klik', -500, '', '2018-07-12 18:25:43', '1', 16),
+(43, 3, 'Iklan klik', -500, '', '2018-07-12 18:43:45', '1', 18),
+(44, 3, 'Iklan klik', -500, '', '2018-07-12 18:43:58', '1', 17),
+(45, 3, 'Iklan klik', -500, '', '2018-07-12 18:44:03', '1', 14),
+(46, 3, 'Iklan klik', -500, '', '2018-07-12 18:44:09', '1', 16);
 
 -- --------------------------------------------------------
 
@@ -190,7 +208,11 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_trans`, `id_pem`, `bukti_foto`, `tgl_upload_bukti`, `status`, `no_resi`, `resi_foto`) VALUES
-(2, 7, './bukti/logo_apotek.jpg', '2018-07-02 00:51:17', 2, '12345657654', './bukti_resi/logo_apotek.jpg');
+(2, 7, './bukti/logo_apotek.jpg', '2018-07-02 00:51:17', 2, '12345657654', './bukti_resi/logo_apotek.jpg'),
+(3, 8, './bukti/5.png', '2018-07-07 20:20:08', 2, '121212', './bukti_resi/5.png'),
+(4, 9, './bukti/5.png', '2018-07-07 20:31:01', 1, '0', ''),
+(5, 10, '', '0000-00-00 00:00:00', 0, '0', ''),
+(6, 11, './bukti/3.jpg', '2018-07-13 20:39:01', 1, '0', '');
 
 -- --------------------------------------------------------
 
@@ -244,11 +266,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_users`, `nim`, `username`, `password`, `nama`, `alamat`, `kota_kab`, `telp`, `email`, `extensi`, `aktif`, `level`, `nama_bank`, `no_rek`) VALUES
 (1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'a', '', 0, 0, '', '.jpg', '1', 'admin', '', 0),
-(3, '123456', 'asd', '7815696ecbf1c96e6894b779456d330e', 'asd', 'kali malang', 35, 2123456, 'asd@asd.com', '', '1', 'mahasiswa', 'BNI', 132132132),
-(7, '', 'zxc', '5fa72358f0b4fb4f2c5d7de8c9a41846', 'zxc', 'cakung', 322, 2132323, '', '', '1', 'user', '', 0),
-(8, '', 'fghaaaaa', '0f98df87c7440c045496f705c7295344', 'aaaaaaaa', '', 0, 0, '', '', '1', 'user', '', 0),
-(9, '', 'bnm', 'bd93b91d4a5e9a7a5fcd1fad5b9cb999', 'bnm', 'bekasi', 1, 0, '', '', '1', 'user', '', 0),
-(10, '12341321', 'ghj', 'ea7d201d1cdd240f3798b2dc51d6adcb', 'ghj', '', 32, 0, '', '', '1', 'mahasiswa', '', 0);
+(3, '123456', 'asd', '7815696ecbf1c96e6894b779456d330e', 'asd', 'kali malang', 35, 2123456, 'asd@asd.com', '.jpg', '1', 'mahasiswa', 'BNI', 132132132),
+(7, '', 'zxc', '5fa72358f0b4fb4f2c5d7de8c9a41846', 'zxc', 'cakung', 322, 2132323, '', '.jpg', '1', 'user', '', 0),
+(8, '', 'fghaaaaa', '0f98df87c7440c045496f705c7295344', 'aaaaaaaa', '', 0, 0, '', '.jpg', '1', 'user', '', 0),
+(9, '', 'bnm', 'bd93b91d4a5e9a7a5fcd1fad5b9cb999', 'bnm', 'bekasi', 1, 0, '', '.jpg', '1', 'user', '', 0),
+(10, '12341321', 'ghj', 'ea7d201d1cdd240f3798b2dc51d6adcb', 'ghj', '', 32, 0, '', '', '1', 'mahasiswa', '', 0),
+(11, '65765765', '', '', 'jkl', '', 0, 0, '', '.jpg', '1', 'mahasiswa', '', 0),
+(12, '123', '', 'd41d8cd98f00b204e9800998ecf8427e', 'qwe', '', 0, 0, '', '.png', '1', 'mahasiswa', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -315,27 +339,27 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `ppc`
 --
 ALTER TABLE `ppc`
-  MODIFY `id_ppc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_ppc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_produk` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `topup`
 --
 ALTER TABLE `topup`
-  MODIFY `id_topup` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_topup` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `ulasan`
 --
@@ -345,7 +369,7 @@ ALTER TABLE `ulasan`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_users` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_users` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

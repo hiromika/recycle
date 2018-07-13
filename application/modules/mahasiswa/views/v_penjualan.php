@@ -29,7 +29,6 @@
                 <th style="width: 10%;">Tgl Pembeli</th>
                 <th style="width: 25%;">Detail Produk</th>
                 <th>Detail Pembelian</th>
-                <!-- <th>Jumlah</th> -->
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
@@ -60,12 +59,15 @@
                       </tr>
                     
                   </table></td>
-                  <!-- <td><?php echo $value['jumlah'] ?></td> -->
                   <td>
                     <table class="table table-bordered">
                       <tr>
                         <th>Pembeli</th>
                         <td><?php echo $value['nama_pem']; ?></td>
+                      </tr>
+                      <tr>
+                        <th>Jumlah Pembelian</th>
+                        <td><?php echo $value['jumlah'] ?></td>
                       </tr>
                       <tr>
                         <th>Alamat</th>

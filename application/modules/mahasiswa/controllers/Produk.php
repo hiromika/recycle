@@ -15,10 +15,10 @@ class Produk extends MY_Controller {
 		$data['title'] = 'Produk';
 		$data['side'] = 'index';
 		$data['produk'] = $this->db->query("SELECT a.*, kategori.nama kategori FROM produk a 
-			JOIN kategori USING(id_kategori) WHERE a.id_users = '$id_users' AND a.status = 0")->result();
+			JOIN kategori USING(id_kategori) WHERE a.id_users = '$id_users' AND a.status = 0 ORDER BY a.id_produk DESC")->result();
 		foreach ($data['produk'] as $d){
 			$saldo = $this->db->query("SELECT SUM(jumlah) saldo FROM topup WHERE id_users = '$d->id_users' AND validasi = '1'")->result()[0]->saldo;
-			if ($saldo < 5000) {
+			if ($saldo < 500) {
 				$this->db->where('id_users', $d->id_users);
 				$this->db->update('produk', array('iklan' => 0));
 			}

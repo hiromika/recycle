@@ -34,6 +34,7 @@ class Admin extends MY_Controller {
 		$this->db->join('transaksi d', 'd.id_pem = a.id_pem', 'left');
 		$this->db->join('users e', 'e.id_users = a.id_users', 'left');
 		$this->db->where('a.status >', 0 );
+		$this->db->order_by('a.id_pem', 'desc');
 		$data['produk'] = $this->db->get()->result_array();
 
 		$this->master($data);

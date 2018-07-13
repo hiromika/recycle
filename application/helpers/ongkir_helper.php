@@ -62,7 +62,7 @@ function getKota($idk){
     } else {
        for ($x = 0; $x < count($data['rajaongkir']['results']); $x++) {
         if ($idk == $data['rajaongkir']['results'][$x]['city_id']) {
-                 echo $data['rajaongkir']['results'][$x]['city_name'];
+                 echo $data['rajaongkir']['results'][$x]['city_name'].', '.$data['rajaongkir']['results'][$x]['province'];
             }
         } 
     }
@@ -98,7 +98,7 @@ function getKota($idk){
               }else{
                 $op = '';
               }
-                echo "<option ".$op." value='".$data['rajaongkir']['results'][$i]['city_id']."'>".$data['rajaongkir']['results'][$i]['city_name']."</option>";
+                echo "<option ".$op." value='".$data['rajaongkir']['results'][$i]['city_id']."'>".$data['rajaongkir']['results'][$i]['province'].', '.$data['rajaongkir']['results'][$i]['city_name']."</option>";
               }
         echo "</select>";
   }
@@ -106,7 +106,7 @@ function getKota($idk){
  function showKota(){
         $curl = curl_init(); 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "http://api.rajaongkir.com/starter/city",
+          CURLOPT_URL => "http://api.rajaongkir.com/starter/city/province",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
@@ -165,7 +165,7 @@ function getKota($idk){
         if ($err) {   echo "cURL Error #:" . $err;
         } else {
           echo '<td>
-                <select name="service" class="form-control" id="ong"> <option value="JNE,0" selected disabled>~ Pilih Paket ~</option>';
+                <select name="service" class="form-control" id="ong"> <option value="JNE,0" selected>~ Pilih Paket ~</option>';
           for($x = 0; $x <= count($decode['rajaongkir']['results']); $x++){
 
           echo  '

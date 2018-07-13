@@ -116,7 +116,7 @@ class Panel extends MY_Controller {
 			$this->db->where('tgl !=', date('Y-m-d'));
 			$get = $this->db->get('ppc');
 
-			if ($get->num_rows() <= 0) {
+			if ($get->num_rows() == 0) {
 				$id_users = $data['produk']['users'];
 				$sal = $this->db->query("SELECT SUM(jumlah) as jum FROM topup WHERE id_users = '$id_users'")->row_array();
 				if ($sal['jum'] >= 500) {
@@ -124,7 +124,8 @@ class Panel extends MY_Controller {
 						 'id_users' 	=> $data['produk']['users'],
 						 'keterangan'	=> 'Iklan klik',
 						 'jumlah'		=> '-500',
-						 'validasi'		=> '1'
+						 'validasi'		=> '1',
+						 'ppc_produk'	=> $idp
 						);
 						$this->db->insert('topup', $object);	
 				}else{
@@ -161,7 +162,7 @@ class Panel extends MY_Controller {
 		$obj = array(
 			'id_users' 		=> $data['id_users'],
 			'id_produk'		=> $data['id_produk'],
-			// 'jumlah'		=> $data['jumlah'],
+			'jumlah'		=> $data['jumlah'],
 			'subtotal'		=> $data['subtotal'],
 			'jenis_paket'	=> $ex[0],
 			'harga_paket'	=> $ex[1],
@@ -175,7 +176,7 @@ class Panel extends MY_Controller {
 			echo json_encode(array('result' => true, 
 				'id_pem' 	=> $id, 
 				'subtot' 	=> 'Rp.'.number_format($data['subtotal'],0,',','.'), 
-				// 'jml' 		=> $data['jumlah'], 
+				'jml' 		=> $data['jumlah'], 
 				'paket' 	=> 'JNE '.$ex[0].' : Rp.'.$ex[1], 
 				'ctt' 		=> $data['catatan'] ));
 		}else{

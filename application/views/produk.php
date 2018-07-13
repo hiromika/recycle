@@ -266,11 +266,11 @@
                   <td colspan="2" style="color: #42b549; text-transform: uppercase;"><?php echo $produk['produk_name']; ?></td>
                 </tr>
                 <tr>
-                  <!-- <th>Jumlah Barang</th> -->
+                  <th>Jumlah Barang</th>
                   <th>Harga Barang</th>
                 </tr>
                 <tr>
-                  <!-- <td><input type="number" id="jumlah" value="1" class="form-control" style="width: 90%;" name="jumlah"></td> -->
+                  <td><input type="number" id="jumlah" value="1" class="form-control" style="width: 90%;" name="jumlah"></td>
                   <td> <input type="text" name="tot" style="background-color: #fff !important; pointer-events: none;" id="tot"  class="form-control" value="<?php echo $produk['harga'];?>" placeholder=""></td>
                 </tr>
             </table>
@@ -348,10 +348,10 @@
                     <th>Harga</th>
                     <td>Rp. <?php echo number_format($produk['harga'],0,',','.'); ?></td>
                   </tr>
-                  <!-- <tr>
+                  <tr>
                     <th>Jumlah Pembelian</th>
                     <td id="jml"></td>
-                  </tr> -->
+                  </tr>
                   <tr>
                     <th>Paket Pengiriman </th>
                     <td id="paket"></td>
@@ -372,7 +372,7 @@
                 <label><input type="radio" name="metode" value="0"> COD</label>
               </div> -->
               <div class="radio">
-                <label><input type="radio" name="metode" selected value="1"> Transfer Bank BNI</label>
+                <label><input type="radio" name="metode" checked value="1"> Transfer Bank BNI</label>
               </div>
             </div>
             <h4 id=""></h4>
@@ -521,16 +521,17 @@
 
     var d = null;
 
-    // $('#jumlah').keyup(function() {
-    //   var tot = $('#jumlah').val()*'<?php echo $produk['harga'] ?>';
-    //   $('#tot').val(tot);
-    //   // d = $('#ong').val();
-      // var o = d.split(',');
-      // var t = parseInt($('#tot').val());
-      // var total = tot + parseInt(o[1]);
-    //   $('#subtot').val(tot);
+    $('#jumlah').keyup(function() {
+      var tot = $('#jumlah').val()*'<?php echo $produk['harga'] ?>';
+      $('#tot').val(tot);
+      
+      d = $('#ong').val();
+      var o = d.split(',');
+      var t = parseInt($('#tot').val());
+      var total = tot + parseInt(o[1]);
+      $('#subtot').val(total);
     
-    // });
+    });
 
     $('#ong').change(function() {
       d = $('#ong').val();
@@ -555,7 +556,7 @@
           data: {
             id_users    : $('#id_users').val(),
             id_produk   : $('#id_produk').val(),
-            // jumlah      : $('#jumlah').val(),
+            jumlah      : $('#jumlah').val(),
             service     : $('#ong').val(),
             subtotal    : $('#subtot').val(),
             catatan     : $('#catatan').val(),

@@ -17,18 +17,22 @@ class Topup extends MY_Controller {
 		// $this->master($data);
 		redirect('mahasiswa/topup/history');
 	}
+
 	function history(){
 		$id_users = $this->session->userdata('id_users');
 		if(strlen($id_users) > 0){
 			$data['view'] = 'v_history_topup';
 			$data['title'] = 'Topup';
 			$data['side'] = 'history';
-			$data['history'] = $this->db->query("SELECT * FROM topup WHERE id_users = '$id_users'")->result();
+			$data['history'] = $this->db->query("SELECT * FROM topup a LEFT JOIN produk b ON b.id_produk = a.ppc_produk  
+
+				WHERE a.id_users = '$id_users' ORDER BY a.id_topup DESC")->result();
 			$this->master($data);
 		}else{
 			redirect('mahasiswa');
 		}
 	}
+
 	function detail_history($id = null){
 		$id_users = $this->session->userdata('id_users');
 		if(strlen($id) > 0){
@@ -41,12 +45,14 @@ class Topup extends MY_Controller {
 			redirect('mahasiswa');
 		}
 	}
+
 	function tambah(){
 		$data['view'] = 'v_topup_add';
 		$data['title'] = 'Topup';
 		$data['side'] = 'tambah';
 		$this->master($data);
 	}
+
 	function add(){
 		if($this->input->post('submit')){
 			$id_users = $this->session->userdata('id_users');
@@ -80,6 +86,7 @@ class Topup extends MY_Controller {
 			redirect('mahasiswa');
 		}
 	}
+
 	function edit($id = null){
 		if(strlen($id) > 0){
 			$data['view'] = 'v_topup_edit';

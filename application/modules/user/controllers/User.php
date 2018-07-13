@@ -36,6 +36,7 @@ class User extends MY_Controller {
 		$this->db->join('users c', 'c.id_users = b.id_users', 'left');
 		$this->db->join('transaksi d', 'd.id_pem = a.id_pem', 'left');
 		$this->db->where('a.id_users', $this->session->userdata('id_users'));
+		$this->db->order_by('a.id_pem', 'desc');
 		$data['produk'] = $this->db->get()->result_array();
 
 		$this->master($data);	
