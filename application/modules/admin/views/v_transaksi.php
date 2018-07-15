@@ -89,7 +89,7 @@
                       </div>
                     ';
                   }elseif ($value['status'] == 1 && $value['sts_t'] == 1) {
-                    $sts = "Menuggu Pengiriman";
+                    $sts = "Menuggu Pengiriman Oleh Penjual";
                     $aksi = "";
                   }else if($value['status'] == 3 && $value['sts_t'] == 1){
                     $sts  = 'Menuggu Konfirmasi Penyelesaian';

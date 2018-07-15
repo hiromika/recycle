@@ -84,7 +84,7 @@
                     </table>
                   </td>
                   <?php if ($value['status'] == 1 && $value['sts_t'] == 1) {
-                    $sts = "Menuggu Pengiriman";
+                    $sts = "Menuggu Pengiriman Oleh Penjual";
                     $aksi = '<button type="button" class="btn btn-success btn-sm u_resi" data-toggle="modal" data-target="#uploadResi">Upload Resi</button>';
                   }else if($value['status'] == 2 && $value['sts_t'] == 1){
                     $sts  = 'Menuggu Konfirmasi Barang Diterima <br>  <table class="table">

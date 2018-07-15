@@ -62,7 +62,7 @@
                   <td>JNE <?php echo $value['jenis_paket'].' : Rp'. number_format($value['harga_paket'],0,',','.');  ?></td>
                   <td>Rp. <?php echo number_format($value['subtotal'],0,',','.'); ?></td>
                   <?php if ($value['status'] == 0) {
-                    $sts  = "Menuggu Pembayaran.";
+                    $sts  = "Silahkan Lakukan Pembayaran.";
                     $aksi = '<button type="button"  class="bnt btn-sm btn-info btninfo" data-toggle="modal">Lanjutkan Pembayaran</button>'; 
                   }else if ($value['status'] == 1 && $value['sts_t'] == 0) {
                     $sts  = "Menuggu Konfimasi Oleh Admin.";
