@@ -57,6 +57,14 @@
                 <input type="number" name="harga" value="<?php echo $produk['harga']?>" class="form-control" placeholder="...">
               </div>
             </div>
+          </div> 
+          <div class="box-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Jumlah</label>
+              <div class="col-sm-10">
+                <input type="number" name="jumlah" value="<?php echo $produk['jumlah']?>" class="form-control" placeholder="...">
+              </div>
+            </div>
           </div>
           <div class="box-body">
             <div class="form-group">

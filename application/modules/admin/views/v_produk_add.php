@@ -76,6 +76,14 @@
           </div>
           <div class="box-body">
             <div class="form-group">
+              <label class="col-sm-2 control-label">Jumlah</label>
+              <div class="col-sm-10">
+                <input type="number" name="jumlah" class="form-control" placeholder="...">
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
               <label class="col-sm-2 control-label">Upload Gambar</label>
               <div class="col-sm-10">
                 <input type="file" class="form-control" name="foto">

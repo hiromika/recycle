@@ -2,7 +2,7 @@
   $id_users = $this->session->userdata('id_users');
   $saldo = $this->db->query("SELECT SUM(jumlah) saldo FROM topup WHERE id_users = '$id_users' AND validasi = '1'")->result()[0]->saldo;
 ?>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green-light sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 13 Jul 2018 pada 21.10
+-- Generation Time: 25 Jul 2018 pada 16.44
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -109,6 +109,7 @@ CREATE TABLE `produk` (
   `nama` varchar(100) NOT NULL,
   `deskripsi` text NOT NULL,
   `harga` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
   `kondisi` tinyint(4) NOT NULL,
   `extensi` varchar(10) NOT NULL,
   `iklan` tinyint(4) NOT NULL DEFAULT '0',
@@ -120,12 +121,14 @@ CREATE TABLE `produk` (
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_users`, `nama`, `deskripsi`, `harga`, `kondisi`, `extensi`, `iklan`, `aktif`, `status`) VALUES
-(14, 1, 3, 'Bambang', 'asd', 2000, 0, '.png', 0, '1', 0),
-(15, 1, 3, 'Juki', 'sdad', 22222, 0, '.png', 0, '1', 1),
-(16, 1, 3, 'asdasdasd', 'sssssss', 2147483647, 0, '.png', 0, '1', 0),
-(17, 1, 3, 'zxc', '2asdasd', 2343043, 0, '.jpg', 0, '1', 0),
-(18, 1, 3, 'test', '5121', 12212, 0, '.png', 0, '1', 0);
+INSERT INTO `produk` (`id_produk`, `id_kategori`, `id_users`, `nama`, `deskripsi`, `harga`, `jumlah`, `kondisi`, `extensi`, `iklan`, `aktif`, `status`) VALUES
+(14, 1, 3, 'Bambang', 'asd', 2000, 0, 0, '.png', 2, '1', 0),
+(15, 1, 3, 'Juki', 'sdad', 22222, 0, 0, '.png', 0, '1', 1),
+(16, 1, 3, 'asdasdasd', 'sssssss', 2147483647, 0, 0, '.png', 2, '1', 0),
+(17, 1, 3, 'zxc', '2asdasd', 2343043, 0, 0, '.jpg', 2, '1', 0),
+(18, 1, 3, 'test', '5121', 12212, 1, 0, '.png', 2, '1', 0),
+(19, 2, 3, 'Fafa', 'asd', 10000, 2, 0, '.png', 0, '1', 0),
+(20, 3, 10, 'hardi', 'qadsa', 1221, 12, 0, '.jpg', 0, '1', 0);
 
 -- --------------------------------------------------------
 
@@ -349,7 +352,7 @@ ALTER TABLE `ppc`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_produk` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `topup`
 --

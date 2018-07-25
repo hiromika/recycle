@@ -40,6 +40,7 @@ class Produk extends MY_Controller {
 			$deskripsi = $this->input->post('deskripsi');
 			$harga = $this->input->post('harga');
 			$aktif = $this->input->post('status');
+			$jumlah = $this->input->post('jumlah');
 			
 			$data_insert = array(
 				'id_kategori' => $id_kategori,
@@ -47,7 +48,8 @@ class Produk extends MY_Controller {
 				'nama' => $nama,
 				'deskripsi' => $deskripsi,
 				'harga' => $harga,
-				'aktif' => $aktif
+				'aktif' => $aktif,
+				'jumlah' => $jumlah
 			);
 			$this->db->insert('produk',$data_insert);
 			$id = $this->db->insert_id();
@@ -108,6 +110,7 @@ class Produk extends MY_Controller {
 				$nama = $this->input->post('nama');
 				$deskripsi = $this->input->post('deskripsi');
 				$harga = $this->input->post('harga');
+				$jumlah = $this->input->post('jumlah');
 
 				$aktif = $this->input->post('status');
 				$id_produk = $this->input->post('id');
@@ -122,7 +125,8 @@ class Produk extends MY_Controller {
 					'nama' => $nama,
 					'deskripsi' => $deskripsi,
 					'harga' => $harga,
-					'aktif' => $aktif
+					'aktif' => $aktif,
+					'jumlah' => $jumlah
 				);
 				$this->db->where('id_produk',$id_produk);
 				$this->db->update('produk',$data_update);
