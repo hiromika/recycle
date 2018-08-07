@@ -41,25 +41,30 @@
                         <a href="<?php echo base_url('mahasiswa/topup/detail_history/').$d->id_topup?>" title="detail" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
                       </td>
                       <td><?php echo $d->timestamp?></td>
-                      <td><?php echo $d->jumlah?></td>
+                      <td><?php echo $d->jml?></td>
                       <td>
                         <table class="table table-bordered">
                       <tr>
-                        <td colspan="2"> <?php echo $d->keterangan?></td>
+                        <td colspan="2"> <?php echo $d->keterangan ?></td>
                       </tr>
-                      <tr>
-                        <td colspan="2">
-                          <img class="card-img-top img img-thumbnail img-fluid" style="width: 150px; height: 100px;" src="<?php echo base_url('produk/').$d->id_produk.$d->extensi?>" alt="">  
-                        </td>
-                      </tr>
-                      <tr>
-                        <th style="width: 30%;">Nama Produk</th>
-                        <td><?php echo $d->nama ?></td>
-                      </tr>
-                      <tr>
-                        <th style="width: 30%;">Harga</th>
-                        <td>Rp. <?php echo number_format($d->harga,0,',','.'); ?></td>
-                      </tr>
+                      <?php if ($d->keterangan == 'Edit by admin') {
+                       
+                      }else{ ?>
+                        <tr>
+                          <td colspan="2">
+                            <img class="card-img-top img img-thumbnail img-fluid" style="width: 150px; height: 100px;" src="<?php echo base_url('produk/').$d->id_produk.$d->extensi?>" alt="">  
+                          </td>
+                        </tr>
+                        <tr>
+                          <th style="width: 30%;">Nama Produk</th>
+                          <td><?php echo $d->nama ?></td>
+                        </tr>
+                        <tr>
+                          <th style="width: 30%;">Harga</th>
+                          <td>Rp. <?php echo number_format($d->harga,0,',','.'); ?></td>
+                        </tr>
+
+                      <?php } ?>
                     
                   </table>
                       </td>

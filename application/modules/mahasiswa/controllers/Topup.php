@@ -24,7 +24,7 @@ class Topup extends MY_Controller {
 			$data['view'] = 'v_history_topup';
 			$data['title'] = 'Topup';
 			$data['side'] = 'history';
-			$data['history'] = $this->db->query("SELECT * FROM topup a LEFT JOIN produk b ON b.id_produk = a.ppc_produk  
+			$data['history'] = $this->db->query("SELECT *, a.jumlah as jml FROM topup a LEFT JOIN produk b ON b.id_produk = a.ppc_produk  
 
 				WHERE a.id_users = '$id_users' ORDER BY a.id_topup DESC")->result();
 			$this->master($data);

@@ -112,6 +112,33 @@ class Mahasiswa extends MY_Controller {
 				 'validasi'		=> '1'
 				);
 				$this->db->insert('topup', $object);
+
+				$data_update = array(
+					'nim' => $nim,
+					'nama' => $nama,
+					'aktif' => $aktif
+				);
+				$this->db->where('id_users',$id_users);
+				$this->db->update('users',$data_update);
+
+				$path = realpath('./ktm');
+				$config['upload_path']    = $path;            
+				$config['allowed_types']  = 'jpg|png';
+				$config['max_size']       = '50000';
+				$config['file_name']      = $id_users;
+				$config['overwrite'] 	  = TRUE;
+				$this->load->library('upload', $config);
+				if($this->upload->do_upload('ktm')){
+					$img_data=$this->upload->data();
+					$file = array('extensi' => $img_data['file_ext'] , );
+					$this->db->where('id_users',$id_users);
+					$this->db->update('users',$file);
+					redirect('admin/mahasiswa');
+				}
+				
+				redirect('admin/mahasiswa');
+
+			
 			}elseif ($jum < $get['jum']) {
 				$saldo = $get['jum']- $jum;
 				$object = array(
@@ -121,29 +148,32 @@ class Mahasiswa extends MY_Controller {
 				 'validasi'		=> '1'
 				);
 				$this->db->insert('topup', $object);
-			}
-			
-			$data_update = array(
-				'nim' => $nim,
-				'nama' => $nama,
-				'aktif' => $aktif
-			);
-			$this->db->where('id_users',$id_users);
-			$this->db->update('users',$data_update);
 
-			$path = realpath('./ktm');
-			$config['upload_path']    = $path;            
-			$config['allowed_types']  = 'jpg|png';
-			$config['max_size']       = '50000';
-			$config['file_name']      = $id_users;
-			$config['overwrite'] 	  = TRUE;
-			$this->load->library('upload', $config);
-			if($this->upload->do_upload('ktm')){
-				$img_data=$this->upload->data();
-				$file = array('extensi' => $img_data['file_ext'] , );
+				$data_update = array(
+					'nim' => $nim,
+					'nama' => $nama,
+					'aktif' => $aktif
+				);
 				$this->db->where('id_users',$id_users);
-				$this->db->update('users',$file);
+				$this->db->update('users',$data_update);
+
+				$path = realpath('./ktm');
+				$config['upload_path']    = $path;            
+				$config['allowed_types']  = 'jpg|png';
+				$config['max_size']       = '50000';
+				$config['file_name']      = $id_users;
+				$config['overwrite'] 	  = TRUE;
+				$this->load->library('upload', $config);
+				if($this->upload->do_upload('ktm')){
+					$img_data=$this->upload->data();
+					$file = array('extensi' => $img_data['file_ext'] , );
+					$this->db->where('id_users',$id_users);
+					$this->db->update('users',$file);
+					redirect('admin/mahasiswa');
+				}
+			
 				redirect('admin/mahasiswa');
+				
 			}
 			
 		}else{
