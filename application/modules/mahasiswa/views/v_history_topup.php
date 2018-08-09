@@ -49,7 +49,9 @@
                       </tr>
                       <?php if ($d->keterangan == 'Edit by admin') {
                        
-                      }else{ ?>
+                      }elseif ($d->keterangan == 'TopUp') { 
+                   
+                      } else{ ?>
                         <tr>
                           <td colspan="2">
                             <img class="card-img-top img img-thumbnail img-fluid" style="width: 150px; height: 100px;" src="<?php echo base_url('produk/').$d->id_produk.$d->extensi?>" alt="">  
