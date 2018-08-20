@@ -198,11 +198,11 @@
           <div class="row">
 	          			
           	<?php 
-
+            if (count($daftar) > 0) {
           		foreach ($daftar as $key => $value) { 
-				 ?>
+				    ?>
 
-				 <div class="col-lg-4 col-md-6 mb-4">
+				      <div class="col-lg-4 col-md-6 mb-4">
 	             <div class="card h-100" <?php echo ($value['iklan']==2)?'style="border: 1.5px solid gold;"':'' ?>>
 	                <a href="<?php echo base_url('panel/detail/').$value['id_produk'];?>"><img class="img card-img-top" style="height: 200px;" src="<?php echo base_url('produk/').$value['id_produk'].$value['ext']?>" alt=""></a>
 	                <div class="card-body text-center">
@@ -217,6 +217,16 @@
 
 		        <?php	 
 	          		}
+              }else{ ?>
+                <div class="col-md-12">
+                  <div class="text-center">
+                    <i class="fa fa-search fa-5x"></i><br><br>
+                    <h4>Maaf, <br> Kami tidak menemukan hasil yang sesuai untuk kata yang anda cari.</h4>
+                    
+                  </div>                  
+                </div>
+
+             <?php }  
           		?>
          
           		
